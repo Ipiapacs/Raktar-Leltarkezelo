@@ -1,4 +1,4 @@
-class UIVezerlo {
+class UIVezerlo {  // AI segítség
     constructor() {
         this.currentTab = 'dashboard';
     }
