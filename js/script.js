@@ -1,4 +1,3 @@
-
 function triggerInventory() {   // AI segítség
     const resultCard = document.getElementById('inventoryResultCard');
     const totalCountEl = document.getElementById('invTotalCount');
