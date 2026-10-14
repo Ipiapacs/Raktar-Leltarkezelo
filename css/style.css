@@ -24,3 +24,21 @@
     color: #fff;
     background-color: #2b303b;
 }
+
+.chart-container {
+    position: relative;
+    height: 300px;
+    width: 100%;
+}
+
+.chart-container-large {
+    height: 350px;
+}
+
+#tab-statisztikak .card {
+    border-radius: 12px;
+}
+
+#tab-statisztikak .card-title {
+    font-weight: 600;
+}

@@ -76,7 +76,48 @@
                             <h2>Leltár Tartalom</h2>
                         </div>
                         <div id="tab-statisztikak" class="tab-content-pane" style="display: none;">
-                            <h2>Statisztikák Tartalom</h2>
+                            <div class="row g-4">
+
+                                <div class="col-12 col-xl-6">
+                                    <div class="card bg-dark border-secondary h-100">
+                                        <div class="card-body">
+                                            <h5 class="card-title text-white mb-3">
+                                                Készlet kategóriánként
+                                            </h5>
+                                            <div class="chart-container">
+                                                <canvas id="kategoriaChart"></canvas>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-xl-6">
+                                    <div class="card bg-dark border-secondary h-100">
+                                        <div class="card-body">
+                                            <h5 class="card-title text-white mb-3">
+                                                Havi készletmozgások
+                                            </h5>
+                                            <div class="chart-container">
+                                                <canvas id="mozgasChart"></canvas>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 pb-4">
+                                    <div class="card bg-dark border-secondary">
+                                        <div class="card-body">
+                                            <h5 class="card-title text-white mb-3">
+                                                Készletérték alakulása
+                                            </h5>
+                                            <div class="chart-container chart-container-large">
+                                                <canvas id="ertekChart"></canvas>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
                         </div>
                     </div>
                 </section>
@@ -99,9 +140,8 @@
         </div>
     </div>
 
-    <!-- Bootstrap JS Bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Különálló JS osztályok -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="js/RaktarVezerlo.js"></script>
     <script src="js/UIVezerlo.js"></script>
     <script src="js/script.js"></script>
