@@ -44,22 +44,34 @@
     border-color: #2f3542;
 }
 
+.tab-content-pane {
+    display: none;
+}
+
+.tab-content-pane.active {
+    display: block;
+}
+
+.chart-frame {
+    position: relative;
+    height: 260px;
+}
+
 /*AI segítség*/
 @media (max-width: 767.98px) {
-    #tab-keszlet .table-custom th,
-    #tab-keszlet .table-custom td {
+    #ful-keszlet .table-custom th,
+    #ful-keszlet .table-custom td {
         padding: 0.35rem 0.2rem !important;
         font-size: 0.75rem !important;
         word-break: break-word;
     }
 
-    #tab-keszlet .table-custom .badge {
+    #ful-keszlet .table-custom .badge {
         font-size: 0.65rem !important;
         padding: 0.25em 0.4em !important;
     }
 
-    #tab-keszlet .card-custom {
+    #ful-keszlet .card-custom {
         padding: 0.5rem !important;
     }
-}
 }

@@ -1,75 +1,127 @@
 /*AI segítség*/
 class RaktarVezerlo {
     constructor() {
-        this.table = document.getElementById('inventoryTableBody');
+        this.table = document.getElementById('keszletTablaTorzs');
         this.activeRow = null;
 
-        this.table.addEventListener('click', (e) => {
-            const btn = e.target.closest('button');
-            if (!btn) return;
+        this.table.addEventListener('click', (event) => {
+            const button = event.target.closest('button');
+            if (!button) return;
 
-            this.activeRow = btn.closest('tr');
-
-            if (btn.dataset.bsTarget === '#editProductModal') {
-                const cells = this.activeRow.children;
-                document.getElementById('editProductSku').value = cells[0].innerText;
-                document.getElementById('editProductName').value = cells[1].innerText;
-                document.getElementById('editProductCategory').value = cells[2].innerText;
-                document.getElementById('editProductQuantity').value = cells[3].innerText;
-                document.getElementById('editProductLocation').value = cells[4].innerText;
-                document.getElementById('editProductStatus').value = cells[5].innerText.trim();
+            this.activeRow = button.closest('tr');
+            if (button.dataset.bsTarget === '#termekSzerkesztesModal') {
+                this.populateEditForm();
             }
         });
-        document.getElementById('addProductForm').onclick = (e) => {
-            if (e.target.type !== 'submit') return;
-            e.preventDefault();
-            this.addRow(
-                document.getElementById('productSku').value,
-                document.getElementById('productName').value,
-                document.getElementById('productCategory').value,
-                document.getElementById('productQuantity').value,
-                document.getElementById('productLocation').value,
-                document.getElementById('productStatus').value
-            );
-            this.close('addProductModal');
-        };
 
-        document.getElementById('editProductForm').onsubmit = (e) => {
-            e.preventDefault();
-            const cells = this.activeRow.children;
-            const status = document.getElementById('editProductStatus').value;
+        document.getElementById('ujTermekUrlap').addEventListener('submit', (event) => {
+            event.preventDefault();
 
-            cells[0].innerText = document.getElementById('editProductSku').value;
-            cells[1].innerText = document.getElementById('editProductName').value;
-            cells[2].innerText = document.getElementById('editProductCategory').value;
-            cells[3].innerText = document.getElementById('editProductQuantity').value;
-            cells[4].innerText = document.getElementById('editProductLocation').value;
-            cells[5].innerHTML = `<span class="badge ${this.getBadge(status)}">${status}</span>`;
+            this.addRow({
+                sku: document.getElementById('ujTermekCikkszam').value,
+                name: document.getElementById('ujTermekNev').value,
+                category: document.getElementById('ujTermekKategoria').value,
+                quantity: document.getElementById('ujTermekMennyiseg').value,
+                location: document.getElementById('ujTermekHelye').value,
+                status: document.getElementById('ujTermekAllapota').value
+            });
+            this.close('ujTermekModal');
+        });
 
-            this.close('editProductModal');
-        };
+        document.getElementById('termekSzerkesztesUrlap').addEventListener('submit', (event) => {
+            event.preventDefault();
+            if (!this.activeRow) return;
 
+            const values = {
+                sku: document.getElementById('szerkesztesCikkszam').value,
+                name: document.getElementById('szerkesztesTermekNev').value,
+                category: document.getElementById('szerkesztesKategoria').value,
+                quantity: document.getElementById('szerkesztesMennyiseg').value,
+                location: document.getElementById('szerkesztesHelye').value,
+                status: document.getElementById('szerkesztesAllapota').value
+            };
 
-        document.getElementById('confirmDeleteBtn').onclick = () => {
-            if (this.activeRow) this.activeRow.remove();
-            this.close('deleteProductModal');
-        };
+            const cells = this.activeRow.cells;
+            cells[0].textContent = values.sku;
+            cells[1].textContent = values.name;
+            cells[2].textContent = values.category;
+            cells[3].textContent = values.quantity;
+            cells[4].textContent = values.location;
+            this.setStatus(cells[5], values.status);
+
+            this.close('termekSzerkesztesModal');
+        });
+
+        document.getElementById('torlesMegerositeseGomb').addEventListener('click', () => {
+            if (this.activeRow) {
+                this.activeRow.remove();
+                this.activeRow = null;
+            }
+            this.close('termekTorlesModal');
+        });
     }
 
-    addRow(sku, name, cat, qty, loc, status) {
-        this.table.innerHTML += `
-            <tr>
-                <td>${sku}</td>
-                <td>${name}</td>
-                <td>${cat}</td>
-                <td>${qty}</td>
-                <td>${loc}</td>
-                <td><span class="badge ${this.getBadge(status)}">${status}</span></td>
-                <td class="text-end">
-                    <button class="btn btn-sm btn-outline-primary me-1" data-bs-toggle="modal" data-bs-target="#editProductModal"><i class="bi bi-pencil"></i></button>
-                    <button class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteProductModal"><i class="bi bi-trash"></i></button>
-                </td>
-            </tr>`;
+    populateEditForm() {
+        const cells = this.activeRow.cells;
+        document.getElementById('szerkesztesCikkszam').value = cells[0].textContent;
+        document.getElementById('szerkesztesTermekNev').value = cells[1].textContent;
+        document.getElementById('szerkesztesKategoria').value = cells[2].textContent;
+        document.getElementById('szerkesztesMennyiseg').value = cells[3].textContent;
+        document.getElementById('szerkesztesHelye').value = cells[4].textContent;
+        document.getElementById('szerkesztesAllapota').value = cells[5].textContent.trim();
+    }
+
+    addRow(product) {
+        const row = document.createElement('tr');
+        const values = [
+            product.sku,
+            product.name,
+            product.category,
+            product.quantity,
+            product.location
+        ];
+
+        values.forEach((value) => {
+            const cell = document.createElement('td');
+            cell.textContent = value;
+            row.appendChild(cell);
+        });
+
+        const statusCell = document.createElement('td');
+        this.setStatus(statusCell, product.status);
+        row.appendChild(statusCell);
+
+        const actionsCell = document.createElement('td');
+        actionsCell.className = 'text-end';
+        actionsCell.append(
+            this.createActionButton('Szerkesztés', 'btn-outline-primary me-1', 'bi-pencil', '#termekSzerkesztesModal'),
+            this.createActionButton('Törlés', 'btn-outline-danger', 'bi-trash', '#termekTorlesModal')
+        );
+        row.appendChild(actionsCell);
+        this.table.appendChild(row);
+    }
+
+    createActionButton(label, variant, iconName, target) {
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.className = `btn btn-sm ${variant}`;
+        button.dataset.bsToggle = 'modal';
+        button.dataset.bsTarget = target;
+        button.title = label;
+        button.setAttribute('aria-label', label);
+
+        const icon = document.createElement('i');
+        icon.className = `bi ${iconName}`;
+        button.appendChild(icon);
+
+        return button;
+    }
+
+    setStatus(cell, status) {
+        const badge = document.createElement('span');
+        badge.className = `badge ${this.getBadge(status)}`;
+        badge.textContent = status;
+        cell.replaceChildren(badge);
     }
 
     getBadge(status) {

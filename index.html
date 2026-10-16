@@ -28,22 +28,22 @@
 
                 <ul class="nav flex-column mb-auto">
                     <li class="nav-item">
-                        <a href="#" class="nav-link active" onclick="ui.switchTab('dashboard', event)">
+                        <a href="#" class="nav-link active" data-tab="attekintes" aria-current="page">
                             <i class="bi bi-speedometer2 me-2"></i> Dashboard
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link" onclick="ui.switchTab('keszlet', event)">
+                        <a href="#" class="nav-link" data-tab="keszlet">
                             <i class="bi bi-boxes me-2"></i> Készlet
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link" onclick="ui.switchTab('leltar', event)">
+                        <a href="#" class="nav-link" data-tab="leltar">
                             <i class="bi bi-clipboard-check me-2"></i> Leltár
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link" onclick="ui.switchTab('statisztikak', event)">
+                        <a href="#" class="nav-link" data-tab="statisztikak">
                             <i class="bi bi-bar-chart-line me-2"></i> Statisztikák
                         </a>
                     </li>
@@ -68,7 +68,7 @@
 
                 <div class="container-fluid px-0 flex-grow-1">
 
-                    <div id="tab-dashboard" class="tab-content-pane active" style="display: block;">
+                    <div id="ful-attekintes" class="tab-content-pane active">
                         <div class="row g-3 mb-4">
                             <div class="col-md-4">
                                 <div class="card card-custom p-3 h-100">
@@ -97,19 +97,17 @@
                         <div class="row g-4 mb-4">
                             <div class="col-lg-8">
                                 <div class="card card-custom p-3 h-100">
-                                    <h5 class="card-title mb-3">Termékek (Diagram)</h5>
-                                    <div class="bg-dark rounded p-4 text-center text-muted d-flex align-items-center justify-content-center"
-                                        style="height: 260px;">
-                                        [Termékek Diagram Helye]
+                                    <h5 class="card-title mb-3">Termékek</h5>
+                                    <div class="bg-dark rounded p-3 text-center d-flex align-items-center justify-content-center chart-frame">
+                                        <canvas id="termekMennyisegDiagram"></canvas>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-lg-4">
                                 <div class="card card-custom p-3 h-100">
-                                    <h5 class="card-title mb-3">Kategória / Forgalom (Diagram)</h5>
-                                    <div class="bg-dark rounded p-4 text-center text-muted d-flex align-items-center justify-content-center"
-                                        style="height: 260px;">
-                                        [Második Diagram Helye]
+                                    <h5 class="card-title mb-3">Kategória / Forgalom</h5>
+                                    <div class="bg-dark rounded p-3 text-center d-flex align-items-center justify-content-center chart-frame">
+                                        <canvas id="kategoriaForgalomDiagram"></canvas>
                                     </div>
                                 </div>
                             </div>
@@ -172,12 +170,12 @@
                         </div>
                     </div>
 
-                    <div id="tab-keszlet" class="tab-content-pane" style="display: none;">
+                    <div id="ful-keszlet" class="tab-content-pane">
                         <div class="card card-custom p-3">
                             <div class="d-flex justify-content-between align-items-center mb-3">
                                 <h5 class="mb-0">Készletkezelés</h5>
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                    data-bs-target="#addProductModal">
+                                    data-bs-target="#ujTermekModal">
                                     <i class="bi bi-plus-lg me-1"></i> Termék hozzáadása
                                 </button>
                             </div>
@@ -195,7 +193,7 @@
                                             <th class="text-end">Műveletek</th>
                                         </tr>
                                     </thead>
-                                    <tbody id="inventoryTableBody">
+                                    <tbody id="keszletTablaTorzs">
                                         <tr>
                                             <td>SKU-1042</td>
                                             <td>Ergonomikus irodai szék</td>
@@ -205,12 +203,12 @@
                                             <td><span class="badge bg-success">Normál</span></td>
                                             <td class="text-end">
                                                 <button class="btn btn-sm btn-outline-primary me-1"
-                                                    data-bs-toggle="modal" data-bs-target="#editProductModal"
+                                                    data-bs-toggle="modal" data-bs-target="#termekSzerkesztesModal"
                                                     title="Szerkesztés">
                                                     <i class="bi bi-pencil"></i>
                                                 </button>
                                                 <button class="btn btn-sm btn-outline-danger" data-bs-toggle="modal"
-                                                    data-bs-target="#deleteProductModal" title="Törlés">
+                                                    data-bs-target="#termekTorlesModal" title="Törlés">
                                                     <i class="bi bi-trash"></i>
                                                 </button>
                                             </td>
@@ -224,12 +222,12 @@
                                             <td><span class="badge bg-success">Normál</span></td>
                                             <td class="text-end">
                                                 <button class="btn btn-sm btn-outline-primary me-1"
-                                                    data-bs-toggle="modal" data-bs-target="#editProductModal"
+                                                    data-bs-toggle="modal" data-bs-target="#termekSzerkesztesModal"
                                                     title="Szerkesztés">
                                                     <i class="bi bi-pencil"></i>
                                                 </button>
                                                 <button class="btn btn-sm btn-outline-danger" data-bs-toggle="modal"
-                                                    data-bs-target="#deleteProductModal" title="Törlés">
+                                                    data-bs-target="#termekTorlesModal" title="Törlés">
                                                     <i class="bi bi-trash"></i>
                                                 </button>
                                             </td>
@@ -243,12 +241,12 @@
                                             <td><span class="badge bg-warning text-dark">Kevés készlet</span></td>
                                             <td class="text-end">
                                                 <button class="btn btn-sm btn-outline-primary me-1"
-                                                    data-bs-toggle="modal" data-bs-target="#editProductModal"
+                                                    data-bs-toggle="modal" data-bs-target="#termekSzerkesztesModal"
                                                     title="Szerkesztés">
                                                     <i class="bi bi-pencil"></i>
                                                 </button>
                                                 <button class="btn btn-sm btn-outline-danger" data-bs-toggle="modal"
-                                                    data-bs-target="#deleteProductModal" title="Törlés">
+                                                    data-bs-target="#termekTorlesModal" title="Törlés">
                                                     <i class="bi bi-trash"></i>
                                                 </button>
                                             </td>
@@ -262,12 +260,12 @@
                                             <td><span class="badge bg-success">Normál</span></td>
                                             <td class="text-end">
                                                 <button class="btn btn-sm btn-outline-primary me-1"
-                                                    data-bs-toggle="modal" data-bs-target="#editProductModal"
+                                                    data-bs-toggle="modal" data-bs-target="#termekSzerkesztesModal"
                                                     title="Szerkesztés">
                                                     <i class="bi bi-pencil"></i>
                                                 </button>
                                                 <button class="btn btn-sm btn-outline-danger" data-bs-toggle="modal"
-                                                    data-bs-target="#deleteProductModal" title="Törlés">
+                                                    data-bs-target="#termekTorlesModal" title="Törlés">
                                                     <i class="bi bi-trash"></i>
                                                 </button>
                                             </td>
@@ -281,12 +279,12 @@
                                             <td><span class="badge bg-danger">Kifogyott</span></td>
                                             <td class="text-end">
                                                 <button class="btn btn-sm btn-outline-primary me-1"
-                                                    data-bs-toggle="modal" data-bs-target="#editProductModal"
+                                                    data-bs-toggle="modal" data-bs-target="#termekSzerkesztesModal"
                                                     title="Szerkesztés">
                                                     <i class="bi bi-pencil"></i>
                                                 </button>
                                                 <button class="btn btn-sm btn-outline-danger" data-bs-toggle="modal"
-                                                    data-bs-target="#deleteProductModal" title="Törlés">
+                                                    data-bs-target="#termekTorlesModal" title="Törlés">
                                                     <i class="bi bi-trash"></i>
                                                 </button>
                                             </td>
@@ -300,12 +298,12 @@
                                             <td><span class="badge bg-success">Normál</span></td>
                                             <td class="text-end">
                                                 <button class="btn btn-sm btn-outline-primary me-1"
-                                                    data-bs-toggle="modal" data-bs-target="#editProductModal"
+                                                    data-bs-toggle="modal" data-bs-target="#termekSzerkesztesModal"
                                                     title="Szerkesztés">
                                                     <i class="bi bi-pencil"></i>
                                                 </button>
                                                 <button class="btn btn-sm btn-outline-danger" data-bs-toggle="modal"
-                                                    data-bs-target="#deleteProductModal" title="Törlés">
+                                                    data-bs-target="#termekTorlesModal" title="Törlés">
                                                     <i class="bi bi-trash"></i>
                                                 </button>
                                             </td>
@@ -319,12 +317,12 @@
                                             <td><span class="badge bg-warning text-dark">Kevés készlet</span></td>
                                             <td class="text-end">
                                                 <button class="btn btn-sm btn-outline-primary me-1"
-                                                    data-bs-toggle="modal" data-bs-target="#editProductModal"
+                                                    data-bs-toggle="modal" data-bs-target="#termekSzerkesztesModal"
                                                     title="Szerkesztés">
                                                     <i class="bi bi-pencil"></i>
                                                 </button>
                                                 <button class="btn btn-sm btn-outline-danger" data-bs-toggle="modal"
-                                                    data-bs-target="#deleteProductModal" title="Törlés">
+                                                    data-bs-target="#termekTorlesModal" title="Törlés">
                                                     <i class="bi bi-trash"></i>
                                                 </button>
                                             </td>
@@ -338,12 +336,12 @@
                                             <td><span class="badge bg-success">Normál</span></td>
                                             <td class="text-end">
                                                 <button class="btn btn-sm btn-outline-primary me-1"
-                                                    data-bs-toggle="modal" data-bs-target="#editProductModal"
+                                                    data-bs-toggle="modal" data-bs-target="#termekSzerkesztesModal"
                                                     title="Szerkesztés">
                                                     <i class="bi bi-pencil"></i>
                                                 </button>
                                                 <button class="btn btn-sm btn-outline-danger" data-bs-toggle="modal"
-                                                    data-bs-target="#deleteProductModal" title="Törlés">
+                                                    data-bs-target="#termekTorlesModal" title="Törlés">
                                                     <i class="bi bi-trash"></i>
                                                 </button>
                                             </td>
@@ -357,12 +355,12 @@
                                             <td><span class="badge bg-success">Normál</span></td>
                                             <td class="text-end">
                                                 <button class="btn btn-sm btn-outline-primary me-1"
-                                                    data-bs-toggle="modal" data-bs-target="#editProductModal"
+                                                    data-bs-toggle="modal" data-bs-target="#termekSzerkesztesModal"
                                                     title="Szerkesztés">
                                                     <i class="bi bi-pencil"></i>
                                                 </button>
                                                 <button class="btn btn-sm btn-outline-danger" data-bs-toggle="modal"
-                                                    data-bs-target="#deleteProductModal" title="Törlés">
+                                                    data-bs-target="#termekTorlesModal" title="Törlés">
                                                     <i class="bi bi-trash"></i>
                                                 </button>
                                             </td>
@@ -376,12 +374,12 @@
                                             <td><span class="badge bg-success">Normál</span></td>
                                             <td class="text-end">
                                                 <button class="btn btn-sm btn-outline-primary me-1"
-                                                    data-bs-toggle="modal" data-bs-target="#editProductModal"
+                                                    data-bs-toggle="modal" data-bs-target="#termekSzerkesztesModal"
                                                     title="Szerkesztés">
                                                     <i class="bi bi-pencil"></i>
                                                 </button>
                                                 <button class="btn btn-sm btn-outline-danger" data-bs-toggle="modal"
-                                                    data-bs-target="#deleteProductModal" title="Törlés">
+                                                    data-bs-target="#termekTorlesModal" title="Törlés">
                                                     <i class="bi bi-trash"></i>
                                                 </button>
                                             </td>
@@ -392,28 +390,29 @@
                         </div>
                     </div>
 
-                    <div id="tab-leltar" class="tab-content-pane" style="display: none;">
+                    <div id="ful-leltar" class="tab-content-pane">
                         <div class="card card-custom p-4 mb-4 text-center">
                             <h5>Új leltározás indítása</h5>
                             <p class="text-muted">A leltár elindításával a rendszer zárolja a termékmozgások ideiglenes
                                 státuszát és ellenőrzi a készletet.</p>
-                            <button class="btn btn-primary col-md-6 col-12 mx-auto mt-2"
-                                onclick="triggerInventory()">Leltár indítása</button>
+                            <button class="btn btn-primary col-md-6 col-12 mx-auto mt-2" id="leltarInditasaGomb">
+                                Leltár indítása
+                            </button>
                         </div>
 
-                        <div id="inventoryResultCard" class="card card-custom p-4 mb-4 d-none border-success">
+                        <div id="leltarEredmenyKartya" class="card card-custom p-4 mb-4 d-none border-success">
                             <div class="d-flex align-items-center mb-3">
                                 <i class="bi bi-check-circle-fill text-success fs-3 me-3"></i>
                                 <div>
                                     <h5 class="mb-0 text-white">Leltározás sikeresen lezárva</h5>
-                                    <small class="text-muted" id="inventoryDateText"></small>
+                                    <small class="text-muted" id="leltarDatumSzoveg"></small>
                                 </div>
                             </div>
                             <div class="row g-3 text-center">
                                 <div class="col-md-4">
                                     <div class="p-3 bg-dark rounded border border-secondary">
                                         <span class="text-muted d-block">Ellenőrzött tételek</span>
-                                        <h4 class="fw-bold text-white mb-0" id="invTotalCount">0 db</h4>
+                                        <h4 class="fw-bold text-white mb-0" id="leltarTetelSzam">0 db</h4>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
@@ -443,14 +442,15 @@
                                             <th>Részletek</th>
                                         </tr>
                                     </thead>
-                                    <tbody id="inventoryHistoryBody">
+                                    <tbody id="leltarElozmenyekTorzs">
                                         <tr>
                                             <td>2026-09-30</td>
                                             <td>Teljes raktár</td>
                                             <td><span class="text-success">98.4% egyezés</span></td>
                                             <td>
                                                 <button class="btn btn-sm btn-outline-light"
-                                                    onclick="showInventoryDetails('2026-09-30', 'Teljes raktár', '98.4% egyezés')">
+                                                    data-leltar-reszletek data-datum="2026-09-30"
+                                                    data-tipus="Teljes raktár" data-eredmeny="98.4% egyezés">
                                                     Megtekintés
                                                 </button>
                                             </td>
@@ -461,8 +461,35 @@
                         </div>
                     </div>
 
-                    <div id="tab-statisztikak" class="tab-content-pane" style="display: none;">
-                        <h2>Statisztikák Tartalom</h2>
+                    <div id="ful-statisztikak" class="tab-content-pane">
+                        <div class="row g-4 mb-4">
+                            <div class="col-lg-6">
+                                <div class="card card-custom p-3 h-100">
+                                    <h5 class="card-title mb-3">Készlet eloszlás kategóriák szerint</h5>
+                                    <div class="chart-container chart-frame">
+                                        <canvas id="kategoriaDiagram"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="card card-custom p-3 h-100">
+                                    <h5 class="card-title mb-3">Havi termékmozgások</h5>
+                                    <div class="chart-container chart-frame">
+                                        <canvas id="mozgasDiagram"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row g-4">
+                            <div class="col-12">
+                                <div class="card card-custom p-3">
+                                    <h5 class="card-title mb-3">Éves készletérték alakulás</h5>
+                                    <div class="chart-container chart-frame">
+                                        <canvas id="keszletErtekDiagram"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                 </div>
@@ -481,41 +508,41 @@
         </div>
     </div>
 
-    <div class="modal fade" id="addProductModal" tabindex="-1" aria-labelledby="addProductModalLabel"
+    <div class="modal fade" id="ujTermekModal" tabindex="-1" aria-labelledby="ujTermekModalCimke"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="addProductModalLabel">Új termék hozzáadása</h5>
+                    <h5 class="modal-title" id="ujTermekModalCimke">Új termék hozzáadása</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Bezárás"></button>
                 </div>
-                <form id="addProductForm">
+                <form id="ujTermekUrlap">
                     <div class="modal-body">
                         <div class="mb-3">
-                            <label for="productSku" class="form-label">SKU</label>
-                            <input type="text" class="form-control" id="productSku" placeholder="pl. SKU-8001" required>
+                            <label for="ujTermekCikkszam" class="form-label">SKU</label>
+                            <input type="text" class="form-control" id="ujTermekCikkszam" placeholder="pl. SKU-8001" required>
                         </div>
                         <div class="mb-3">
-                            <label for="productName" class="form-label">Termék neve</label>
-                            <input type="text" class="form-control" id="productName" required>
+                            <label for="ujTermekNev" class="form-label">Termék neve</label>
+                            <input type="text" class="form-control" id="ujTermekNev" required>
                         </div>
                         <div class="mb-3">
-                            <label for="productCategory" class="form-label">Kategória</label>
-                            <input type="text" class="form-control" id="productCategory" required>
+                            <label for="ujTermekKategoria" class="form-label">Kategória</label>
+                            <input type="text" class="form-control" id="ujTermekKategoria" required>
                         </div>
                         <div class="mb-3">
-                            <label for="productQuantity" class="form-label">Mennyiség</label>
-                            <input type="text" class="form-control" id="productQuantity" placeholder="pl. 10 db"
+                            <label for="ujTermekMennyiseg" class="form-label">Mennyiség</label>
+                            <input type="text" class="form-control" id="ujTermekMennyiseg" placeholder="pl. 10 db"
                                 required>
                         </div>
                         <div class="mb-3">
-                            <label for="productLocation" class="form-label">Elhelyezkedés</label>
-                            <input type="text" class="form-control" id="productLocation"
+                            <label for="ujTermekHelye" class="form-label">Elhelyezkedés</label>
+                            <input type="text" class="form-control" id="ujTermekHelye"
                                 placeholder="pl. A épület / Sektor 1 / Polc A" required>
                         </div>
                         <div class="mb-3">
-                            <label for="productStatus" class="form-label">Állapot</label>
-                            <select class="form-select" id="productStatus" required>
+                            <label for="ujTermekAllapota" class="form-label">Állapot</label>
+                            <select class="form-select" id="ujTermekAllapota" required>
                                 <option value="Normál">Normál</option>
                                 <option value="Kevés készlet">Kevés készlet</option>
                                 <option value="Kifogyott">Kifogyott</option>
@@ -531,39 +558,39 @@
         </div>
     </div>
 
-    <div class="modal fade" id="editProductModal" tabindex="-1" aria-labelledby="editProductModalLabel"
+    <div class="modal fade" id="termekSzerkesztesModal" tabindex="-1" aria-labelledby="termekSzerkesztesModalCimke"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="editProductModalLabel">Termék szerkesztése</h5>
+                    <h5 class="modal-title" id="termekSzerkesztesModalCimke">Termék szerkesztése</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Bezárás"></button>
                 </div>
-                <form id="editProductForm">
+                <form id="termekSzerkesztesUrlap">
                     <div class="modal-body">
                         <div class="mb-3">
-                            <label for="editProductSku" class="form-label">SKU</label>
-                            <input type="text" class="form-control" id="editProductSku" required>
+                            <label for="szerkesztesCikkszam" class="form-label">SKU</label>
+                            <input type="text" class="form-control" id="szerkesztesCikkszam" required>
                         </div>
                         <div class="mb-3">
-                            <label for="editProductName" class="form-label">Termék neve</label>
-                            <input type="text" class="form-control" id="editProductName" required>
+                            <label for="szerkesztesTermekNev" class="form-label">Termék neve</label>
+                            <input type="text" class="form-control" id="szerkesztesTermekNev" required>
                         </div>
                         <div class="mb-3">
-                            <label for="editProductCategory" class="form-label">Kategória</label>
-                            <input type="text" class="form-control" id="editProductCategory" required>
+                            <label for="szerkesztesKategoria" class="form-label">Kategória</label>
+                            <input type="text" class="form-control" id="szerkesztesKategoria" required>
                         </div>
                         <div class="mb-3">
-                            <label for="editProductQuantity" class="form-label">Mennyiség</label>
-                            <input type="text" class="form-control" id="editProductQuantity" required>
+                            <label for="szerkesztesMennyiseg" class="form-label">Mennyiség</label>
+                            <input type="text" class="form-control" id="szerkesztesMennyiseg" required>
                         </div>
                         <div class="mb-3">
-                            <label for="editProductLocation" class="form-label">Elhelyezkedés</label>
-                            <input type="text" class="form-control" id="editProductLocation" required>
+                            <label for="szerkesztesHelye" class="form-label">Elhelyezkedés</label>
+                            <input type="text" class="form-control" id="szerkesztesHelye" required>
                         </div>
                         <div class="mb-3">
-                            <label for="editProductStatus" class="form-label">Állapot</label>
-                            <select class="form-select" id="editProductStatus" required>
+                            <label for="szerkesztesAllapota" class="form-label">Állapot</label>
+                            <select class="form-select" id="szerkesztesAllapota" required>
                                 <option value="Normál">Normál</option>
                                 <option value="Kevés készlet">Kevés készlet</option>
                                 <option value="Kifogyott">Kifogyott</option>
@@ -579,12 +606,12 @@
         </div>
     </div>
 
-    <div class="modal fade" id="deleteProductModal" tabindex="-1" aria-labelledby="deleteProductModalLabel"
+    <div class="modal fade" id="termekTorlesModal" tabindex="-1" aria-labelledby="termekTorlesModalCimke"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-sm">
             <div class="modal-content">
                 <div class="modal-header bg-danger text-white">
-                    <h5 class="modal-title" id="deleteProductModalLabel">Törlés megerősítése</h5>
+                    <h5 class="modal-title" id="termekTorlesModalCimke">Törlés megerősítése</h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
                         aria-label="Bezárás"></button>
                 </div>
@@ -594,7 +621,7 @@
                 </div>
                 <div class="modal-footer justify-content-center">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Mégse</button>
-                    <button type="button" class="btn btn-danger" id="confirmDeleteBtn">Törlés</button>
+                    <button type="button" class="btn btn-danger" id="torlesMegerositeseGomb">Törlés</button>
                 </div>
             </div>
         </div>
@@ -609,9 +636,9 @@
                         aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <p><strong>Dátum:</strong> <span id="modalLeltarDate">-</span></p>
-                    <p><strong>Típus:</strong> <span id="modalLeltarType">-</span></p>
-                    <p><strong>Eredmény / Pontosság:</strong> <span id="modalLeltarResult" class="text-success">-</span>
+                    <p><strong>Dátum:</strong> <span id="reszletekLeltarDatum">-</span></p>
+                    <p><strong>Típus:</strong> <span id="reszletekLeltarTipus">-</span></p>
+                    <p><strong>Eredmény / Pontosság:</strong> <span id="reszletekLeltarEredmeny" class="text-success">-</span>
                     </p>
                     <hr class="border-secondary">
                     <p class="text-muted mb-0">A leltár során az összes termék számlálása megtörtént.</p>
@@ -623,6 +650,7 @@
         </div>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="js/RaktarVezerlo.js"></script>
     <script src="js/UIVezerlo.js"></script>

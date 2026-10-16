@@ -1,39 +1,50 @@
-class UIVezerlo {  // AI segítség
+class UIVezerlo {
     constructor() {
-        this.currentTab = 'dashboard';
+        this._currentTab = 'attekintes';
+
+        document.querySelectorAll('.nav-link[data-tab]').forEach((link) => {
+            link.addEventListener('click', (event) => {
+                event.preventDefault();
+                this.switchTab(link.dataset.tab);
+            });
+        });
     }
 
-    /**
-     * @param {string} tabName
-     * @param {Event} event
-     */
-    switchTab(tabName, event) {
-        if (event) {
-            event.preventDefault();
-        }
+    get aktivFul() {
+        return this._currentTab;
+    }
 
-        this.currentTab = tabName;
+    set aktivFul(tabNev) {
+        this._currentTab = tabNev;
+    }
+// AI segítség
+    /**
+     * @param {string} tabNev
+     */
+
+    switchTab(tabNev) {
+        this.aktivFul = tabNev;
 
         const contents = document.querySelectorAll('.tab-content-pane');
         contents.forEach(pane => {
             pane.classList.remove('active');
-            pane.style.display = 'none';
         });
 
-        const targetContent = document.getElementById(`tab-${tabName}`);
+        const targetContent = document.getElementById(`ful-${this.aktivFul}`);
         if (targetContent) {
-            targetContent.style.display = 'block';
             targetContent.classList.add('active');
         }
 
-        const navLinks = document.querySelectorAll('.nav-link');
-        navLinks.html?.forEach
+        const navLinks = document.querySelectorAll('.nav-link[data-tab]');
         navLinks.forEach(link => {
             link.classList.remove('active');
+            link.removeAttribute('aria-current');
         });
 
-        if (event && event.currentTarget) {
-            event.currentTarget.classList.add('active');
+        const activeLink = document.querySelector(`.nav-link[data-tab="${this.aktivFul}"]`);
+        if (activeLink) {
+            activeLink.classList.add('active');
+            activeLink.setAttribute('aria-current', 'page');
         }
     }
 }
