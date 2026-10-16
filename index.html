@@ -13,14 +13,12 @@
 <body>
     <div class="container-fluid">
         <div class="row">
-            <nav class="col-md-3 col-lg-2 d-md-block sidebar offcanvas-md offcanvas-start p-3" tabindex="-1"
-                id="sidebarMenu">
+            <nav class="col-md-3 col-lg-2 d-md-block sidebar offcanvas-md offcanvas-start p-3" tabindex="-1" id="sidebarMenu">
                 <div class="offcanvas-header px-0 pb-3 d-md-none">
                     <h5 class="offcanvas-title text-white" id="sidebarMenuLabel">Intelligens Raktár</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
-                        data-bs-target="#sidebarMenu" aria-label="Close"></button>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" data-bs-target="#sidebarMenu" aria-label="Close"></button>
                 </div>
-
+                
                 <div class="d-flex align-items-center mb-4 px-2 d-none d-md-flex">
                     <i class="bi bi-box-seam text-primary fs-4 me-2"></i>
                     <span class="fs-5 fw-bold text-white">Intelligens Raktár</span>
@@ -55,6 +53,9 @@
                 <div class="d-md-none mb-3">
                     <button class="btn btn-outline-secondary" type="button" data-bs-toggle="offcanvas"
                         data-bs-target="#sidebarMenu" aria-controls="sidebarMenu">
+                
+                <div class="d-md-none mb-3">
+                    <button class="btn btn-outline-secondary" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu">
                         <i class="bi bi-list me-1"></i> Menü
                     </button>
                 </div>
@@ -63,11 +64,12 @@
                     <div class="container-fluid px-0">
                         <h1 class="mb-0"><span class="navbar-brand text-white fs-4">Intelligens Raktárkezelő
                                 Rendszer</span></h1>
+                        <h1 class="mb-0"><span class="navbar-brand text-white fs-4">Intelligens Raktárkezelő Rendszer</span></h1>
                     </div>
                 </header>
 
                 <div class="container-fluid px-0 flex-grow-1">
-
+                    
                     <div id="tab-dashboard" class="tab-content-pane active" style="display: block;">
                         <div class="row g-3 mb-4">
                             <div class="col-md-4">
@@ -76,6 +78,7 @@
                                     <h3 class="fw-bold text-white mb-0">14 250 db</h3>
                                     <small class="text-success"><i class="bi bi-arrow-up"></i> +4.2% ezen a
                                         héten</small>
+                                    <small class="text-success"><i class="bi bi-arrow-up"></i> +4.2% ezen a héten</small>
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -100,6 +103,7 @@
                                     <h5 class="card-title mb-3">Termékek (Diagram)</h5>
                                     <div class="bg-dark rounded p-4 text-center text-muted d-flex align-items-center justify-content-center"
                                         style="height: 260px;">
+                                    <div class="bg-dark rounded p-4 text-center text-muted d-flex align-items-center justify-content-center" style="height: 260px;">
                                         [Termékek Diagram Helye]
                                     </div>
                                 </div>
@@ -109,6 +113,7 @@
                                     <h5 class="card-title mb-3">Kategória / Forgalom (Diagram)</h5>
                                     <div class="bg-dark rounded p-4 text-center text-muted d-flex align-items-center justify-content-center"
                                         style="height: 260px;">
+                                    <div class="bg-dark rounded p-4 text-center text-muted d-flex align-items-center justify-content-center" style="height: 260px;">
                                         [Második Diagram Helye]
                                     </div>
                                 </div>
@@ -152,6 +157,7 @@
                                     <ul class="list-group list-group-flush bg-transparent">
                                         <li
                                             class="list-group-item bg-transparent text-light d-flex justify-content-between align-items-center px-0 border-bottom border-secondary">
+                                        <li class="list-group-item bg-transparent text-light d-flex justify-content-between align-items-center px-0 border-bottom border-secondary">
                                             <div>
                                                 <strong>Nyomtató patron K</strong><br>
                                                 <small class="text-muted">Készlet: 2 db (Min: 5)</small>
@@ -160,6 +166,7 @@
                                         </li>
                                         <li
                                             class="list-group-item bg-transparent text-light d-flex justify-content-between align-items-center px-0">
+                                        <li class="list-group-item bg-transparent text-light d-flex justify-content-between align-items-center px-0">
                                             <div>
                                                 <strong>A4 Másolópapír</strong><br>
                                                 <small class="text-muted">Készlet: 4 cs (Min: 10)</small>
@@ -515,6 +522,7 @@
                                 </div>
                             </div>
                         </div>
+                        <h2>Készlet Tartalom</h2>
                     </div>
 
                     <div id="tab-leltar" class="tab-content-pane" style="display: none;">
@@ -524,6 +532,8 @@
                                 státuszát és ellenőrzi a készletet.</p>
                             <button class="btn btn-primary col-md-6 col-12 mx-auto mt-2"
                                 onclick="triggerInventory()">Leltár indítása</button>
+                            <p class="text-muted">A leltár elindításával a rendszer zárolja a termékmozgások ideiglenes státuszát és ellenőrzi a készletet.</p>
+                            <button class="btn btn-primary col-md-6 col-12 mx-auto mt-2" onclick="triggerInventory()">Leltár indítása</button>
                         </div>
 
                         <div id="inventoryResultCard" class="card card-custom p-4 mb-4 d-none border-success">
@@ -576,6 +586,7 @@
                                             <td>
                                                 <button class="btn btn-sm btn-outline-light"
                                                     onclick="showInventoryDetails('2026-09-30', 'Teljes raktár', '98.4% egyezés')">
+                                                <button class="btn btn-sm btn-outline-light" onclick="showInventoryDetails('2026-09-30', 'Teljes raktár', '98.4% egyezés')">
                                                     Megtekintés
                                                 </button>
                                             </td>
@@ -602,6 +613,12 @@
                         <div class="d-flex gap-3 small">
                             <span class="text-success"><i class="bi bi-circle-fill fs-6 me-1"></i> Rendszerszint:
                                 Online</span>
+                    <div class="container-fluid px-0 d-flex flex-column flex-md-row justify-content-between align-items-center gap-2">
+                        <div>
+                            <span class="text-light fw-semibold">Intelligens Raktárkezelő Rendszer</span> &copy; 2026 Minden jog fenntartva.
+                        </div>
+                        <div class="d-flex gap-3 small">
+                            <span class="text-success"><i class="bi bi-circle-fill fs-6 me-1"></i> Rendszerszint: Online</span>
                             <span class="text-secondary">Verzió: 1.0.4</span>
                         </div>
                     </div>
@@ -618,12 +635,14 @@
                     <h5 class="modal-title"><i class="bi bi-clipboard2-data me-2"></i> Leltár Részletek</h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
                         aria-label="Close"></button>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <p><strong>Dátum:</strong> <span id="modalLeltarDate">-</span></p>
                     <p><strong>Típus:</strong> <span id="modalLeltarType">-</span></p>
                     <p><strong>Eredmény / Pontosság:</strong> <span id="modalLeltarResult" class="text-success">-</span>
                     </p>
+                    <p><strong>Eredmény / Pontosság:</strong> <span id="modalLeltarResult" class="text-success">-</span></p>
                     <hr class="border-secondary">
                     <p class="text-muted mb-0">A leltár során az összes termék számlálása megtörtént.</p>
                 </div>
