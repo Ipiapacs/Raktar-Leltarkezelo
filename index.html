@@ -13,17 +13,17 @@
 <body>
     <div class="container-fluid">
         <div class="row">
-            <nav class="col-md-3 col-lg-2 d-md-block sidebar offcanvas-md offcanvas-start p-3" tabindex="-1"
-                id="sidebarMenu">
+            <nav class="col-md-3 col-lg-2 d-md-block sidebar offcanvas-md offcanvas-start p-3" tabindex="-1" id="sidebarMenu">
                 <div class="offcanvas-header px-0 pb-3 d-md-none">
                     <h5 class="offcanvas-title text-white" id="sidebarMenuLabel">Intelligens Raktár</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
-                        data-bs-target="#sidebarMenu" aria-label="Close"></button>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" data-bs-target="#sidebarMenu" aria-label="Close"></button>
                 </div>
+                
                 <div class="d-flex align-items-center mb-4 px-2 d-none d-md-flex">
                     <i class="bi bi-box-seam text-primary fs-4 me-2"></i>
                     <span class="fs-5 fw-bold text-white">Intelligens Raktár</span>
                 </div>
+
                 <ul class="nav flex-column mb-auto">
                     <li class="nav-item">
                         <a href="#" class="nav-link active" onclick="ui.switchTab('dashboard', event)">
@@ -49,114 +49,108 @@
             </nav>
 
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 py-4 d-flex flex-column min-vh-100">
+                
+                <div class="d-md-none mb-3">
+                    <button class="btn btn-outline-secondary" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu">
+                        <i class="bi bi-list me-1"></i> Menü
+                    </button>
+                </div>
 
-                <section>
-                    <div class="d-md-none mb-3">
-                        <button class="btn btn-outline-secondary" type="button" data-bs-toggle="offcanvas"
-                            data-bs-target="#sidebarMenu" aria-controls="sidebarMenu">
-                            <i class="bi bi-list me-1"></i> Menü
-                        </button>
+                <header class="navbar navbar-expand-lg border-bottom border-secondary mb-4 pb-3">
+                    <div class="container-fluid px-0">
+                        <h1 class="mb-0"><span class="navbar-brand text-white fs-4">Intelligens Raktárkezelő Rendszer</span></h1>
                     </div>
+                </header>
 
-                    <header class="navbar navbar-expand-lg border-bottom border-secondary mb-4 pb-3">
-                        <div class="container-fluid px-0">
-                            <h1><span class="navbar-brand mb-0 text-white fs-4">Intelligens Raktárkezelő Rendszer</span>
-                            </h1>
+                <div class="container-fluid px-0 flex-grow-1">
+                    
+                    <div id="tab-dashboard" class="tab-content-pane active" style="display: block;">
+                        <div class="row g-3 mb-4">
+                            <div class="col-md-4">
+                                <div class="card card-custom p-3 h-100">
+                                    <h6 class="text-muted">Készlet</h6>
+                                    <h3 class="fw-bold text-white mb-0">14 250 db</h3>
+                                    <small class="text-success"><i class="bi bi-arrow-up"></i> +4.2% ezen a héten</small>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card card-custom p-3 h-100">
+                                    <h6 class="text-muted">Alacsony</h6>
+                                    <h3 class="fw-bold text-warning mb-0">3 termék</h3>
+                                    <small class="text-danger">Azonnali beszerzés szükséges</small>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card card-custom p-3 h-100">
+                                    <h6 class="text-muted">Elfogyott / Összérték</h6>
+                                    <h3 class="fw-bold text-info mb-0">45 820 000 Ft</h3>
+                                    <small class="text-muted">Beszerzési árak alapján</small>
+                                </div>
+                            </div>
                         </div>
-                    </header>
 
-                    <div class="container mt-4 flex-grow-1">
-                        <div id="tab-dashboard" class="tab-content-pane active" style="display: block;">
-                            <div id="tab-dashboard" class="content-tab">
-                                <div class="row g-3 mb-4">
-                                    <div class="col-md-4">
-                                        <div class="card card-custom p-3 h-100">
-                                            <h6 class="text-muted">Készlet</h6>
-                                            <h3 class="fw-bold text-white mb-0">14 250 db</h3>
-                                            <small class="text-success"><i class="bi bi-arrow-up"></i> +4.2% ezen a
-                                                héten</small>
-
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-4">
-                                        <div class="card card-custom p-3 h-100">
-                                            <h6 class="text-muted">Alacsony</h6>
-                                            <h3 class="fw-bold text-warning mb-0">3 termék</h3>
-                                            <small class="text-danger">Azonnali beszerzés szükséges</small>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-4">
-                                        <div class="card card-custom p-3 h-100">
-                                            <h6 class="text-muted">Elfogyott / Összérték</h6>
-                                            <h3 class="fw-bold text-info mb-0">45 820 000 Ft</h3>
-                                            <small class="text-muted">Beszerzési árak alapján</small>
-                                        </div>
+                        <div class="row g-4 mb-4">
+                            <div class="col-lg-8">
+                                <div class="card card-custom p-3 h-100">
+                                    <h5 class="card-title mb-3">Termékek (Diagram)</h5>
+                                    <div class="bg-dark rounded p-4 text-center text-muted d-flex align-items-center justify-content-center" style="height: 260px;">
+                                        [Termékek Diagram Helye]
                                     </div>
                                 </div>
-
-                                <div class="row g-4">
-                                    <div class="col-lg-8 d-flex flex-column gap-4">
-                                        <div class="card card-custom p-3">
-                                            <h5 class="card-title mb-3">Termékek (Diagram)</h5>
-                                            <div class="bg-dark rounded p-4 text-center text-muted 
-                                            d-flex align-items-center justify-content-center" style="height: 260px;">
-                                                [Termékek Diagram Helye]</div>
-
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-4 d-flex flex-column gap-4">
-                                        <div class="card card-custom p-3">
-                                            <h5 class="card-title mb-3">Kategória / Forgalom (Diagram)</h5>
-                                            <div class="bg-dark rounded p-4 text-center text-muted d-flex align-items-center justify-content-center"
-                                                style="height: 260px;">[Második Diagram Helye]</div>
-                                        </div>
-                                    </div>
-
-                                    <div class="card card-custom p-3 mb-4">
-                                        <h5 class="card-title mb-3">Legutóbbi mozgások</h5>
-                                        <div class="table-responsive">
-                                            <table class="table table-custom table-hover align-middle mb-0">
-                                                <thead>
-                                                    <tr>
-                                                        <th>SKU</th>
-                                                        <th>Termék neve</th>
-                                                        <th>Típus</th>
-                                                        <th>Mennyiség</th>
-                                                        <th>Dátum</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody id="movementTableBody">
-                                                    <tr>
-                                                        <td>SKU-8821</td>
-                                                        <td>Iratmegsemmisítő Pro</td>
-                                                        <td><span class="badge bg-success">Beérkezés</span></td>
-                                                        <td>+15 db</td>
-                                                        <td>2026-10-10 08:30</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="card card-custom p-3 h-100">
+                                    <h5 class="card-title mb-3">Kategória / Forgalom (Diagram)</h5>
+                                    <div class="bg-dark rounded p-4 text-center text-muted d-flex align-items-center justify-content-center" style="height: 260px;">
+                                        [Második Diagram Helye]
                                     </div>
                                 </div>
+                            </div>
+                        </div>
 
-                                <div class="card card-custom p-3 flex-grow-1">
-                                    <h5 class="card-title mb-3 text-warning"><i
-                                            class="bi bi-exclamation-triangle me-1"></i>Alacsony Készlet</h5>
+                        <div class="row g-4">
+                            <div class="col-lg-8">
+                                <div class="card card-custom p-3">
+                                    <h5 class="card-title mb-3">Legutóbbi mozgások</h5>
+                                    <div class="table-responsive">
+                                        <table class="table table-custom table-hover align-middle mb-0">
+                                            <thead>
+                                                <tr>
+                                                    <th>SKU</th>
+                                                    <th>Termék neve</th>
+                                                    <th>Típus</th>
+                                                    <th>Mennyiség</th>
+                                                    <th>Dátum</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="movementTableBody">
+                                                <tr>
+                                                    <td>SKU-8821</td>
+                                                    <td>Iratmegsemmisítő Pro</td>
+                                                    <td><span class="badge bg-success">Beérkezés</span></td>
+                                                    <td>+15 db</td>
+                                                    <td>2026-10-10 08:30</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
 
+                            <div class="col-lg-4">
+                                <div class="card card-custom p-3 h-100">
+                                    <h5 class="card-title mb-3 text-warning">
+                                        <i class="bi bi-exclamation-triangle me-1"></i>Alacsony Készlet
+                                    </h5>
                                     <ul class="list-group list-group-flush bg-transparent">
-                                        <li
-                                            class="list-group-item bg-transparent text-light d-flex justify-content-between align-items-center px-0">
+                                        <li class="list-group-item bg-transparent text-light d-flex justify-content-between align-items-center px-0 border-bottom border-secondary">
                                             <div>
                                                 <strong>Nyomtató patron K</strong><br>
                                                 <small class="text-muted">Készlet: 2 db (Min: 5)</small>
                                             </div>
                                             <span class="badge bg-danger">Kritikus</span>
                                         </li>
-                                        <li
-                                            class="list-group-item bg-transparent text-light d-flex justify-content-between align-items-center px-0 border-0">
+                                        <li class="list-group-item bg-transparent text-light d-flex justify-content-between align-items-center px-0">
                                             <div>
                                                 <strong>A4 Másolópapír</strong><br>
                                                 <small class="text-muted">Készlet: 4 cs (Min: 10)</small>
@@ -167,128 +161,96 @@
                                 </div>
                             </div>
                         </div>
-                        <div id="tab-keszlet" class="tab-content-pane" style="display: none;">
-                            <h2>Készlet Tartalom</h2>
-                        </div>
-                        <div id="tab-leltar" class="tab-content-pane" style="display: none;">
-                            <h2>Leltár Tartalom</h2>
-                        </div>
-                            <h2>Dashboard Tartalom</h2>
-                        </div>
-                        <div id="tab-keszlet" class="tab-content-pane" style="display: none;">
-                            <h2>Készlet Tartalom</h2>
-                        </div>
-                        <div id="tab-leltar" class="tab-content-pane" style="display: none;">
-                            <div class="card card-custom p-4 mb-4 text-center">
-                                <h5>Új leltározás indítása</h5>
-                                <p class="text-muted">A leltár elindításával a rendszer zárolja a termékmozgások
-                                    ideiglenes státuszát és ellenőrzi a készletet.</p>
-                                <button class="btn btn-primary w-50 mx-auto mt-2" onclick="triggerInventory()">Leltár
-                                    indítása</button>
-                            </div>
+                    </div>
 
-                            <div id="inventoryResultCard" class="card card-custom p-4 mb-4 d-none border-success">
-                                <div class="d-flex align-items-center mb-3">
-                                    <i class="bi bi-check-circle-fill text-success fs-3 me-3"></i>
-                                    <div>
-                                        <h5 class="mb-0 text-white">Leltározás sikeresen lezárva</h5>
-                                        <small class="text-muted" id="inventoryDateText"></small>
-                                    </div>
-                                </div>
-                                <div class="row g-3 text-center">
-                                    <div class="col-md-4">
-                                        <div class="p-3 bg-dark rounded border border-secondary">
-                                            <span class="text-muted d-block">Ellenőrzött tételek</span>
-                                            <h4 class="fw-bold text-white mb-0" id="invTotalCount">0 db</h4>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="p-3 bg-dark rounded border border-secondary">
-                                            <span class="text-muted d-block">Eltérés / Hiány</span>
-                                            <h4 class="fw-bold text-warning mb-0">0 db</h4>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="p-3 bg-dark rounded border border-secondary">
-                                            <span class="text-muted d-block">Pontossági arány</span>
-                                            <h4 class="fw-bold text-success mb-0">100%</h4>
-                                        </div>
-                                    </div>
+                    <div id="tab-keszlet" class="tab-content-pane" style="display: none;">
+                        <h2>Készlet Tartalom</h2>
+                    </div>
+
+                    <div id="tab-leltar" class="tab-content-pane" style="display: none;">
+                        <div class="card card-custom p-4 mb-4 text-center">
+                            <h5>Új leltározás indítása</h5>
+                            <p class="text-muted">A leltár elindításával a rendszer zárolja a termékmozgások ideiglenes státuszát és ellenőrzi a készletet.</p>
+                            <button class="btn btn-primary col-md-6 col-12 mx-auto mt-2" onclick="triggerInventory()">Leltár indítása</button>
+                        </div>
+
+                        <div id="inventoryResultCard" class="card card-custom p-4 mb-4 d-none border-success">
+                            <div class="d-flex align-items-center mb-3">
+                                <i class="bi bi-check-circle-fill text-success fs-3 me-3"></i>
+                                <div>
+                                    <h5 class="mb-0 text-white">Leltározás sikeresen lezárva</h5>
+                                    <small class="text-muted" id="inventoryDateText"></small>
                                 </div>
                             </div>
-
-                            <div class="card card-custom p-3">
-                                <h5 class="card-title mb-3">Legutóbbi leltárak</h5>
-                                <div class="table-responsive">
-                                    <table class="table table-custom mb-0">
-                                        <thead>
-                                            <tr>
-                                                <th>Dátum</th>
-                                                <th>Típus</th>
-                                                <th>Eredmény</th>
-                                                <th>Részletek</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody id="inventoryHistoryBody">
-                                            <tr>
-                                                <td>2026-09-30</td>
-                                                <td>Teljes raktár</td>
-                                                <td><span class="text-success">98.4% egyezés</span></td>
-                                                <td>
-                                                    <button class="btn btn-sm btn-outline-light"
-                                                        onclick="showInventoryDetails('2026-09-30', 'Teljes raktár', '98.4% egyezés')">
-                                                        Megtekintés
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                            <div class="row g-3 text-center">
+                                <div class="col-md-4">
+                                    <div class="p-3 bg-dark rounded border border-secondary">
+                                        <span class="text-muted d-block">Ellenőrzött tételek</span>
+                                        <h4 class="fw-bold text-white mb-0" id="invTotalCount">0 db</h4>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="p-3 bg-dark rounded border border-secondary">
+                                        <span class="text-muted d-block">Eltérés / Hiány</span>
+                                        <h4 class="fw-bold text-warning mb-0">0 db</h4>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="p-3 bg-dark rounded border border-secondary">
+                                        <span class="text-muted d-block">Pontossági arány</span>
+                                        <h4 class="fw-bold text-success mb-0">100%</h4>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div id="tab-statisztikak" class="tab-content-pane" style="display: none;">
-                            <h2>Statisztikák Tartalom</h2>
+
+                        <div class="card card-custom p-3">
+                            <h5 class="card-title mb-3">Legutóbbi leltárak</h5>
+                            <div class="table-responsive">
+                                <table class="table table-custom mb-0">
+                                    <thead>
+                                        <tr>
+                                            <th>Dátum</th>
+                                            <th>Típus</th>
+                                            <th>Eredmény</th>
+                                            <th>Részletek</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="inventoryHistoryBody">
+                                        <tr>
+                                            <td>2026-09-30</td>
+                                            <td>Teljes raktár</td>
+                                            <td><span class="text-success">98.4% egyezés</span></td>
+                                            <td>
+                                                <button class="btn btn-sm btn-outline-light" onclick="showInventoryDetails('2026-09-30', 'Teljes raktár', '98.4% egyezés')">
+                                                    Megtekintés
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
-        </div>
-    </div>
-    </div>
-    </section>
 
-    <footer class="mt-auto pt-4 pb-3 border-top border-secondary text-muted text-center text-md-start">
-        <div
-            class="container-fluid px-0 d-flex flex-column flex-md-row justify-content-between align-items-center gap-2">
-            <div>
-                <span class="text-light fw-semibold">Intelligens Raktárkezelő Rendszer</span> &copy; 2026
-                Minden jog fenntartva.
-            </div>
-            <div class="d-flex gap-3 small">
-                <span class="text-success"><i class="bi bi-circle-fill fs-6 me-1"></i> Rendszerszint:
-                    Online</span>
-                <span class="text-secondary">Verzió: 1.0.4</span>
-            </div>
-        </div>
-    </footer>
-    </main>
-    </div>
-    </div>
+                    <div id="tab-statisztikak" class="tab-content-pane" style="display: none;">
+                        <h2>Statisztikák Tartalom</h2>
+                    </div>
 
-                </section>
+                </div>
 
                 <footer class="mt-auto pt-4 pb-3 border-top border-secondary text-muted text-center text-md-start">
-                    <div
-                        class="container-fluid px-0 d-flex flex-column flex-md-row justify-content-between align-items-center gap-2">
+                    <div class="container-fluid px-0 d-flex flex-column flex-md-row justify-content-between align-items-center gap-2">
                         <div>
-                            <span class="text-light fw-semibold">Intelligens Raktárkezelő Rendszer</span> &copy; 2026
-                            Minden jog fenntartva.
+                            <span class="text-light fw-semibold">Intelligens Raktárkezelő Rendszer</span> &copy; 2026 Minden jog fenntartva.
                         </div>
                         <div class="d-flex gap-3 small">
-                            <span class="text-success"><i class="bi bi-circle-fill fs-6 me-1"></i> Rendszerszint:
-                                Online</span>
+                            <span class="text-success"><i class="bi bi-circle-fill fs-6 me-1"></i> Rendszerszint: Online</span>
                             <span class="text-secondary">Verzió: 1.0.4</span>
                         </div>
                     </div>
                 </footer>
+
             </main>
         </div>
     </div>
@@ -298,14 +260,12 @@
             <div class="modal-content bg-dark text-light border-secondary">
                 <div class="modal-header border-secondary">
                     <h5 class="modal-title"><i class="bi bi-clipboard2-data me-2"></i> Leltár Részletek</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
-                        aria-label="Close"></button>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <p><strong>Dátum:</strong> <span id="modalLeltarDate">-</span></p>
                     <p><strong>Típus:</strong> <span id="modalLeltarType">-</span></p>
-                    <p><strong>Eredmény / Pontosság:</strong> <span id="modalLeltarResult" class="text-success">-</span>
-                    </p>
+                    <p><strong>Eredmény / Pontosság:</strong> <span id="modalLeltarResult" class="text-success">-</span></p>
                     <hr class="border-secondary">
                     <p class="text-muted mb-0">A leltár során az összes termék számlálása megtörtént.</p>
                 </div>
@@ -317,9 +277,6 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Bootstrap JS Bundle -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Különálló JS osztályok -->
     <script src="js/RaktarVezerlo.js"></script>
     <script src="js/UIVezerlo.js"></script>
     <script src="js/script.js"></script>
