@@ -13,12 +13,14 @@
 <body>
     <div class="container-fluid">
         <div class="row">
-            <nav class="col-md-3 col-lg-2 d-md-block sidebar offcanvas-md offcanvas-start p-3" tabindex="-1" id="sidebarMenu">
+            <nav class="col-md-3 col-lg-2 d-md-block sidebar offcanvas-md offcanvas-start p-3" tabindex="-1"
+                id="sidebarMenu">
                 <div class="offcanvas-header px-0 pb-3 d-md-none">
                     <h5 class="offcanvas-title text-white" id="sidebarMenuLabel">Intelligens Raktár</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" data-bs-target="#sidebarMenu" aria-label="Close"></button>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
+                        data-bs-target="#sidebarMenu" aria-label="Close"></button>
                 </div>
-                
+
                 <div class="d-flex align-items-center mb-4 px-2 d-none d-md-flex">
                     <i class="bi bi-box-seam text-primary fs-4 me-2"></i>
                     <span class="fs-5 fw-bold text-white">Intelligens Raktár</span>
@@ -49,28 +51,31 @@
             </nav>
 
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 py-4 d-flex flex-column min-vh-100">
-                
+
                 <div class="d-md-none mb-3">
-                    <button class="btn btn-outline-secondary" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu">
+                    <button class="btn btn-outline-secondary" type="button" data-bs-toggle="offcanvas"
+                        data-bs-target="#sidebarMenu" aria-controls="sidebarMenu">
                         <i class="bi bi-list me-1"></i> Menü
                     </button>
                 </div>
 
                 <header class="navbar navbar-expand-lg border-bottom border-secondary mb-4 pb-3">
                     <div class="container-fluid px-0">
-                        <h1 class="mb-0"><span class="navbar-brand text-white fs-4">Intelligens Raktárkezelő Rendszer</span></h1>
+                        <h1 class="mb-0"><span class="navbar-brand text-white fs-4">Intelligens Raktárkezelő
+                                Rendszer</span></h1>
                     </div>
                 </header>
 
                 <div class="container-fluid px-0 flex-grow-1">
-                    
+
                     <div id="tab-dashboard" class="tab-content-pane active" style="display: block;">
                         <div class="row g-3 mb-4">
                             <div class="col-md-4">
                                 <div class="card card-custom p-3 h-100">
                                     <h6 class="text-muted">Készlet</h6>
                                     <h3 class="fw-bold text-white mb-0">14 250 db</h3>
-                                    <small class="text-success"><i class="bi bi-arrow-up"></i> +4.2% ezen a héten</small>
+                                    <small class="text-success"><i class="bi bi-arrow-up"></i> +4.2% ezen a
+                                        héten</small>
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -93,7 +98,8 @@
                             <div class="col-lg-8">
                                 <div class="card card-custom p-3 h-100">
                                     <h5 class="card-title mb-3">Termékek (Diagram)</h5>
-                                    <div class="bg-dark rounded p-4 text-center text-muted d-flex align-items-center justify-content-center" style="height: 260px;">
+                                    <div class="bg-dark rounded p-4 text-center text-muted d-flex align-items-center justify-content-center"
+                                        style="height: 260px;">
                                         [Termékek Diagram Helye]
                                     </div>
                                 </div>
@@ -101,7 +107,8 @@
                             <div class="col-lg-4">
                                 <div class="card card-custom p-3 h-100">
                                     <h5 class="card-title mb-3">Kategória / Forgalom (Diagram)</h5>
-                                    <div class="bg-dark rounded p-4 text-center text-muted d-flex align-items-center justify-content-center" style="height: 260px;">
+                                    <div class="bg-dark rounded p-4 text-center text-muted d-flex align-items-center justify-content-center"
+                                        style="height: 260px;">
                                         [Második Diagram Helye]
                                     </div>
                                 </div>
@@ -143,14 +150,16 @@
                                         <i class="bi bi-exclamation-triangle me-1"></i>Alacsony Készlet
                                     </h5>
                                     <ul class="list-group list-group-flush bg-transparent">
-                                        <li class="list-group-item bg-transparent text-light d-flex justify-content-between align-items-center px-0 border-bottom border-secondary">
+                                        <li
+                                            class="list-group-item bg-transparent text-light d-flex justify-content-between align-items-center px-0 border-bottom border-secondary">
                                             <div>
                                                 <strong>Nyomtató patron K</strong><br>
                                                 <small class="text-muted">Készlet: 2 db (Min: 5)</small>
                                             </div>
                                             <span class="badge bg-danger">Kritikus</span>
                                         </li>
-                                        <li class="list-group-item bg-transparent text-light d-flex justify-content-between align-items-center px-0">
+                                        <li
+                                            class="list-group-item bg-transparent text-light d-flex justify-content-between align-items-center px-0">
                                             <div>
                                                 <strong>A4 Másolópapír</strong><br>
                                                 <small class="text-muted">Készlet: 4 cs (Min: 10)</small>
@@ -164,14 +173,361 @@
                     </div>
 
                     <div id="tab-keszlet" class="tab-content-pane" style="display: none;">
-                        <h2>Készlet Tartalom</h2>
+                        <div class="card card-custom p-3">
+                            <!-- Fejléc gombbal a jobb felső sarokban -->
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <h5 class="mb-0">Készletkezelés</h5>
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                    data-bs-target="#addProductModal">
+                                    <i class="bi bi-plus-lg me-1"></i> Termék hozzáadása
+                                </button>
+                            </div>
+
+                            <div class="table-responsive">
+                                <table class="table table-custom align-middle mb-0">
+                                    <thead>
+                                        <tr>
+                                            <th>SKU</th>
+                                            <th>Termék neve</th>
+                                            <th>Kategória</th>
+                                            <th>Mennyiség</th>
+                                            <th>Elhelyezkedés</th>
+                                            <th>Állapot</th>
+                                            <th class="text-end">Műveletek</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="inventoryTableBody">
+                                        <tr>
+                                            <td>SKU-1042</td>
+                                            <td>Ergonomikus irodai szék</td>
+                                            <td>Irodabútor</td>
+                                            <td>42 db</td>
+                                            <td>A épület / Sektor 2 / Polc B</td>
+                                            <td><span class="badge bg-success">Normál</span></td>
+                                            <td class="text-end">
+                                                <button class="btn btn-sm btn-outline-primary me-1"
+                                                    data-bs-toggle="modal" data-bs-target="#editProductModal"
+                                                    title="Szerkesztés">
+                                                    <i class="bi bi-pencil"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-outline-danger" data-bs-toggle="modal"
+                                                    data-bs-target="#deleteProductModal" title="Törlés">
+                                                    <i class="bi bi-trash"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>SKU-1088</td>
+                                            <td>Motoros állítható magasságú íróasztal</td>
+                                            <td>Irodabútor</td>
+                                            <td>15 db</td>
+                                            <td>A épület / Sektor 1 / Polc A</td>
+                                            <td><span class="badge bg-success">Normál</span></td>
+                                            <td class="text-end">
+                                                <button class="btn btn-sm btn-outline-primary me-1"
+                                                    data-bs-toggle="modal" data-bs-target="#editProductModal"
+                                                    title="Szerkesztés">
+                                                    <i class="bi bi-pencil"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-outline-danger" data-bs-toggle="modal"
+                                                    data-bs-target="#deleteProductModal" title="Törlés">
+                                                    <i class="bi bi-trash"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>SKU-2014</td>
+                                            <td>Dell UltraSharp 27" 4K Monitor</td>
+                                            <td>Elektronika</td>
+                                            <td>8 db</td>
+                                            <td>B épület / Sektor 3 / Polc C</td>
+                                            <td><span class="badge bg-warning text-dark">Kevés készlet</span></td>
+                                            <td class="text-end">
+                                                <button class="btn btn-sm btn-outline-primary me-1"
+                                                    data-bs-toggle="modal" data-bs-target="#editProductModal"
+                                                    title="Szerkesztés">
+                                                    <i class="bi bi-pencil"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-outline-danger" data-bs-toggle="modal"
+                                                    data-bs-target="#deleteProductModal" title="Törlés">
+                                                    <i class="bi bi-trash"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>SKU-2055</td>
+                                            <td>Vezeték nélküli billentyűzet & egér kombó</td>
+                                            <td>Periféria</td>
+                                            <td>120 db</td>
+                                            <td>B épület / Sektor 1 / Polc D</td>
+                                            <td><span class="badge bg-success">Normál</span></td>
+                                            <td class="text-end">
+                                                <button class="btn btn-sm btn-outline-primary me-1"
+                                                    data-bs-toggle="modal" data-bs-target="#editProductModal"
+                                                    title="Szerkesztés">
+                                                    <i class="bi bi-pencil"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-outline-danger" data-bs-toggle="modal"
+                                                    data-bs-target="#deleteProductModal" title="Törlés">
+                                                    <i class="bi bi-trash"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>SKU-3002</td>
+                                            <td>A4-es nyomtatópapír (5x500 lap)</td>
+                                            <td>Irodaszer</td>
+                                            <td>0 db</td>
+                                            <td>C épület / Sektor 1 / Polc A</td>
+                                            <td><span class="badge bg-danger">Kifogyott</span></td>
+                                            <td class="text-end">
+                                                <button class="btn btn-sm btn-outline-primary me-1"
+                                                    data-bs-toggle="modal" data-bs-target="#editProductModal"
+                                                    title="Szerkesztés">
+                                                    <i class="bi bi-pencil"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-outline-danger" data-bs-toggle="modal"
+                                                    data-bs-target="#deleteProductModal" title="Törlés">
+                                                    <i class="bi bi-trash"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>SKU-3019</td>
+                                            <td>Golyóstoll készlet (Kék, 50 db/csomag)</td>
+                                            <td>Irodaszer</td>
+                                            <td>85 csomag</td>
+                                            <td>C épület / Sektor 2 / Polc B</td>
+                                            <td><span class="badge bg-success">Normál</span></td>
+                                            <td class="text-end">
+                                                <button class="btn btn-sm btn-outline-primary me-1"
+                                                    data-bs-toggle="modal" data-bs-target="#editProductModal"
+                                                    title="Szerkesztés">
+                                                    <i class="bi bi-pencil"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-outline-danger" data-bs-toggle="modal"
+                                                    data-bs-target="#deleteProductModal" title="Törlés">
+                                                    <i class="bi bi-trash"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>SKU-4081</td>
+                                            <td>C-típusú USB-C Docking Station</td>
+                                            <td>Elektronika</td>
+                                            <td>3 db</td>
+                                            <td>B épület / Sektor 3 / Polc A</td>
+                                            <td><span class="badge bg-warning text-dark">Kevés készlet</span></td>
+                                            <td class="text-end">
+                                                <button class="btn btn-sm btn-outline-primary me-1"
+                                                    data-bs-toggle="modal" data-bs-target="#editProductModal"
+                                                    title="Szerkesztés">
+                                                    <i class="bi bi-pencil"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-outline-danger" data-bs-toggle="modal"
+                                                    data-bs-target="#deleteProductModal" title="Törlés">
+                                                    <i class="bi bi-trash"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>SKU-5012</td>
+                                            <td>Mágneses fehértábla (120x90 cm)</td>
+                                            <td>Kiegészítő</td>
+                                            <td>24 db</td>
+                                            <td>A épület / Sektor 4 / Polc E</td>
+                                            <td><span class="badge bg-success">Normál</span></td>
+                                            <td class="text-end">
+                                                <button class="btn btn-sm btn-outline-primary me-1"
+                                                    data-bs-toggle="modal" data-bs-target="#editProductModal"
+                                                    title="Szerkesztés">
+                                                    <i class="bi bi-pencil"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-outline-danger" data-bs-toggle="modal"
+                                                    data-bs-target="#deleteProductModal" title="Törlés">
+                                                    <i class="bi bi-trash"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>SKU-6003</td>
+                                            <td>LED Asztali lámpa állítható fényerővel</td>
+                                            <td>Világítás</td>
+                                            <td>60 db</td>
+                                            <td>A épület / Sektor 3 / Polc C</td>
+                                            <td><span class="badge bg-success">Normál</span></td>
+                                            <td class="text-end">
+                                                <button class="btn btn-sm btn-outline-primary me-1"
+                                                    data-bs-toggle="modal" data-bs-target="#editProductModal"
+                                                    title="Szerkesztés">
+                                                    <i class="bi bi-pencil"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-outline-danger" data-bs-toggle="modal"
+                                                    data-bs-target="#deleteProductModal" title="Törlés">
+                                                    <i class="bi bi-trash"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>SKU-7040</td>
+                                            <td>Irattartó papírmappa (10 db/csomag)</td>
+                                            <td>Irodaszer</td>
+                                            <td>150 csomag</td>
+                                            <td>C épület / Sektor 2 / Polc A</td>
+                                            <td><span class="badge bg-success">Normál</span></td>
+                                            <td class="text-end">
+                                                <button class="btn btn-sm btn-outline-primary me-1"
+                                                    data-bs-toggle="modal" data-bs-target="#editProductModal"
+                                                    title="Szerkesztés">
+                                                    <i class="bi bi-pencil"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-outline-danger" data-bs-toggle="modal"
+                                                    data-bs-target="#deleteProductModal" title="Törlés">
+                                                    <i class="bi bi-trash"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Termék hozzáadása Modal -->
+                    <div class="modal fade" id="addProductModal" tabindex="-1" aria-labelledby="addProductModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="addProductModalLabel">Új termék hozzáadása</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Bezárás"></button>
+                                </div>
+                                <form id="addProductForm">
+                                    <div class="modal-body">
+                                        <div class="mb-3">
+                                            <label for="productSku" class="form-label">SKU</label>
+                                            <input type="text" class="form-control" id="productSku"
+                                                placeholder="pl. SKU-8001" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="productName" class="form-label">Termék neve</label>
+                                            <input type="text" class="form-control" id="productName" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="productCategory" class="form-label">Kategória</label>
+                                            <input type="text" class="form-control" id="productCategory" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="productQuantity" class="form-label">Mennyiség</label>
+                                            <input type="text" class="form-control" id="productQuantity"
+                                                placeholder="pl. 10 db" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="productLocation" class="form-label">Elhelyezkedés</label>
+                                            <input type="text" class="form-control" id="productLocation"
+                                                placeholder="pl. A épület / Sektor 1 / Polc A" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="productStatus" class="form-label">Állapot</label>
+                                            <select class="form-select" id="productStatus" required>
+                                                <option value="Normál">Normál</option>
+                                                <option value="Kevés készlet">Kevés készlet</option>
+                                                <option value="Kifogyott">Kifogyott</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Mégse</button>
+                                        <button type="submit" class="btn btn-primary">Mentés</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Termék szerkesztése Modal -->
+                    <div class="modal fade" id="editProductModal" tabindex="-1" aria-labelledby="editProductModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="editProductModalLabel">Termék szerkesztése</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Bezárás"></button>
+                                </div>
+                                <form id="editProductForm">
+                                    <div class="modal-body">
+                                        <div class="mb-3">
+                                            <label for="editProductSku" class="form-label">SKU</label>
+                                            <input type="text" class="form-control" id="editProductSku" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="editProductName" class="form-label">Termék neve</label>
+                                            <input type="text" class="form-control" id="editProductName" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="editProductCategory" class="form-label">Kategória</label>
+                                            <input type="text" class="form-control" id="editProductCategory" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="editProductQuantity" class="form-label">Mennyiség</label>
+                                            <input type="text" class="form-control" id="editProductQuantity" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="editProductLocation" class="form-label">Elhelyezkedés</label>
+                                            <input type="text" class="form-control" id="editProductLocation" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="editProductStatus" class="form-label">Állapot</label>
+                                            <select class="form-select" id="editProductStatus" required>
+                                                <option value="Normál">Normál</option>
+                                                <option value="Kevés készlet">Kevés készlet</option>
+                                                <option value="Kifogyott">Kifogyott</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Mégse</button>
+                                        <button type="submit" class="btn btn-primary">Módosítások mentése</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Termék törlése Megerősítő Modal -->
+                    <div class="modal fade" id="deleteProductModal" tabindex="-1"
+                        aria-labelledby="deleteProductModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered modal-sm">
+                            <div class="modal-content">
+                                <div class="modal-header bg-danger text-white">
+                                    <h5 class="modal-title" id="deleteProductModalLabel">Törlés megerősítése</h5>
+                                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                                        aria-label="Bezárás"></button>
+                                </div>
+                                <div class="modal-body text-center py-4">
+                                    <i class="text-danger display-4 mb-3 d-block"></i>
+                                    <p class="mb-0">Biztosan törölni szeretnéd ezt a terméket a nyilvántartásból?</p>
+                                </div>
+                                <div class="modal-footer justify-content-center">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Mégse</button>
+                                    <button type="button" class="btn btn-danger" id="confirmDeleteBtn">Törlés</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     <div id="tab-leltar" class="tab-content-pane" style="display: none;">
                         <div class="card card-custom p-4 mb-4 text-center">
                             <h5>Új leltározás indítása</h5>
-                            <p class="text-muted">A leltár elindításával a rendszer zárolja a termékmozgások ideiglenes státuszát és ellenőrzi a készletet.</p>
-                            <button class="btn btn-primary col-md-6 col-12 mx-auto mt-2" onclick="triggerInventory()">Leltár indítása</button>
+                            <p class="text-muted">A leltár elindításával a rendszer zárolja a termékmozgások ideiglenes
+                                státuszát és ellenőrzi a készletet.</p>
+                            <button class="btn btn-primary col-md-6 col-12 mx-auto mt-2"
+                                onclick="triggerInventory()">Leltár indítása</button>
                         </div>
 
                         <div id="inventoryResultCard" class="card card-custom p-4 mb-4 d-none border-success">
@@ -222,7 +578,8 @@
                                             <td>Teljes raktár</td>
                                             <td><span class="text-success">98.4% egyezés</span></td>
                                             <td>
-                                                <button class="btn btn-sm btn-outline-light" onclick="showInventoryDetails('2026-09-30', 'Teljes raktár', '98.4% egyezés')">
+                                                <button class="btn btn-sm btn-outline-light"
+                                                    onclick="showInventoryDetails('2026-09-30', 'Teljes raktár', '98.4% egyezés')">
                                                     Megtekintés
                                                 </button>
                                             </td>
@@ -240,12 +597,15 @@
                 </div>
 
                 <footer class="mt-auto pt-4 pb-3 border-top border-secondary text-muted text-center text-md-start">
-                    <div class="container-fluid px-0 d-flex flex-column flex-md-row justify-content-between align-items-center gap-2">
+                    <div
+                        class="container-fluid px-0 d-flex flex-column flex-md-row justify-content-between align-items-center gap-2">
                         <div>
-                            <span class="text-light fw-semibold">Intelligens Raktárkezelő Rendszer</span> &copy; 2026 Minden jog fenntartva.
+                            <span class="text-light fw-semibold">Intelligens Raktárkezelő Rendszer</span> &copy; 2026
+                            Minden jog fenntartva.
                         </div>
                         <div class="d-flex gap-3 small">
-                            <span class="text-success"><i class="bi bi-circle-fill fs-6 me-1"></i> Rendszerszint: Online</span>
+                            <span class="text-success"><i class="bi bi-circle-fill fs-6 me-1"></i> Rendszerszint:
+                                Online</span>
                             <span class="text-secondary">Verzió: 1.0.4</span>
                         </div>
                     </div>
@@ -260,12 +620,14 @@
             <div class="modal-content bg-dark text-light border-secondary">
                 <div class="modal-header border-secondary">
                     <h5 class="modal-title"><i class="bi bi-clipboard2-data me-2"></i> Leltár Részletek</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <p><strong>Dátum:</strong> <span id="modalLeltarDate">-</span></p>
                     <p><strong>Típus:</strong> <span id="modalLeltarType">-</span></p>
-                    <p><strong>Eredmény / Pontosság:</strong> <span id="modalLeltarResult" class="text-success">-</span></p>
+                    <p><strong>Eredmény / Pontosság:</strong> <span id="modalLeltarResult" class="text-success">-</span>
+                    </p>
                     <hr class="border-secondary">
                     <p class="text-muted mb-0">A leltár során az összes termék számlálása megtörtént.</p>
                 </div>
