@@ -41,4 +41,41 @@
 
 #tab-statisztikak .card-title {
     font-weight: 600px;
+.card-custom {
+    background-color: #1a1d24;
+    border: 1px solid #2f3542;
+    border-radius: 8px;
+}
+
+.table-custom {
+    color: #e9ecef;
+}
+
+.table-custom th {
+    border-color: #2f3542;
+    background-color: #21252d;
+}
+
+.table-custom td {
+    border-color: #2f3542;
+}
+
+/*AI segítség*/
+@media (max-width: 767.98px) {
+    #tab-keszlet .table-custom th,
+    #tab-keszlet .table-custom td {
+        padding: 0.35rem 0.2rem !important;
+        font-size: 0.75rem !important;
+        word-break: break-word;
+    }
+
+    #tab-keszlet .table-custom .badge {
+        font-size: 0.65rem !important;
+        padding: 0.25em 0.4em !important;
+    }
+
+    #tab-keszlet .card-custom {
+        padding: 0.5rem !important;
+    }
+}
 }
