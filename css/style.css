@@ -1,0 +1,45 @@
+.sidebar {
+    background-color: #1a1d24;
+    border-right: 1px solid #2f3542;
+}
+
+@media (min-width: 768px) {
+    .sidebar {
+        min-height: 100vh;
+        height: 100vh;
+        position: sticky;
+        top: 0;
+        align-self: flex-start;
+        overflow-y: auto;
+    }
+}
+
+.sidebar .nav-link {
+    color: #adb5bd;
+    border-radius: 6px;
+    margin-bottom: 4px;
+}
+
+.sidebar .nav-link:hover, .sidebar .nav-link.active {
+    color: #fff;
+    background-color: #2b303b;
+}
+
+.card-custom {
+    background-color: #1a1d24;
+    border: 1px solid #2f3542;
+    border-radius: 8px;
+}
+
+.table-custom {
+    color: #e9ecef;
+}
+
+.table-custom th {
+    border-color: #2f3542;
+    background-color: #21252d;
+}
+
+.table-custom td {
+    border-color: #2f3542;
+}
