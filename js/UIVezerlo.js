@@ -1,52 +1,51 @@
 class UIVezerlo {
     constructor() {
-        this._currentTab = 'attekintes';
+        this._aktivFul = 'attekintes';
 
-        document.querySelectorAll('.nav-link[data-tab]').forEach((link) => {
-            link.addEventListener('click', (event) => {
+        document.querySelectorAll('.nav-link[data-tab]').forEach((hivatkozas) => {
+            hivatkozas.addEventListener('click', (event) => {
                 event.preventDefault();
-                this.switchTab(link.dataset.tab);
+                this.fulValtasa(hivatkozas.dataset.tab);
             });
         });
     }
 
     get aktivFul() {
-        return this._currentTab;
+        return this._aktivFul;
     }
 
     set aktivFul(tabNev) {
-        this._currentTab = tabNev;
+        this._aktivFul = tabNev;
     }
-// AI segítség
+
     /**
      * @param {string} tabNev
      */
-
-    switchTab(tabNev) {
+    fulValtasa(tabNev) {
         this.aktivFul = tabNev;
 
-        const contents = document.querySelectorAll('.tab-content-pane');
-        contents.forEach(pane => {
-            pane.classList.remove('active');
+        const fulTartalmak = document.querySelectorAll('.tab-content-pane');
+        fulTartalmak.forEach((fulTartalom) => {
+            fulTartalom.classList.remove('active');
         });
 
-        const targetContent = document.getElementById(`ful-${this.aktivFul}`);
-        if (targetContent) {
-            targetContent.classList.add('active');
+        const celTartalom = document.getElementById(`ful-${this.aktivFul}`);
+        if (celTartalom) {
+            celTartalom.classList.add('active');
         }
 
-        const navLinks = document.querySelectorAll('.nav-link[data-tab]');
-        navLinks.forEach(link => {
-            link.classList.remove('active');
-            link.removeAttribute('aria-current');
+        const navigaciosHivatkozasok = document.querySelectorAll('.nav-link[data-tab]');
+        navigaciosHivatkozasok.forEach((hivatkozas) => {
+            hivatkozas.classList.remove('active');
+            hivatkozas.removeAttribute('aria-current');
         });
 
-        const activeLink = document.querySelector(`.nav-link[data-tab="${this.aktivFul}"]`);
-        if (activeLink) {
-            activeLink.classList.add('active');
-            activeLink.setAttribute('aria-current', 'page');
+        const aktivHivatkozas = document.querySelector(`.nav-link[data-tab="${this.aktivFul}"]`);
+        if (aktivHivatkozas) {
+            aktivHivatkozas.classList.add('active');
+            aktivHivatkozas.setAttribute('aria-current', 'page');
         }
     }
 }
 
-const ui = new UIVezerlo();
+const feluletVezerlo = new UIVezerlo();

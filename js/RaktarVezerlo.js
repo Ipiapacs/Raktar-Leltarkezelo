@@ -1,137 +1,137 @@
 /*AI segítség*/
 class RaktarVezerlo {
     constructor() {
-        this.table = document.getElementById('keszletTablaTorzs');
-        this.activeRow = null;
+        this.keszletTabla = document.getElementById('keszletTablaTorzs');
+        this.aktivSor = null;
 
-        this.table.addEventListener('click', (event) => {
-            const button = event.target.closest('button');
-            if (!button) return;
+        this.keszletTabla.addEventListener('click', (event) => {
+            const gomb = event.target.closest('button');
+            if (!gomb) return;
 
-            this.activeRow = button.closest('tr');
-            if (button.dataset.bsTarget === '#termekSzerkesztesModal') {
-                this.populateEditForm();
+            this.aktivSor = gomb.closest('tr');
+            if (gomb.dataset.bsTarget === '#termekSzerkesztesModal') {
+                this.szerkesztoUrlapFeltoltese();
             }
         });
 
         document.getElementById('ujTermekUrlap').addEventListener('submit', (event) => {
             event.preventDefault();
 
-            this.addRow({
-                sku: document.getElementById('ujTermekCikkszam').value,
-                name: document.getElementById('ujTermekNev').value,
-                category: document.getElementById('ujTermekKategoria').value,
-                quantity: document.getElementById('ujTermekMennyiseg').value,
-                location: document.getElementById('ujTermekHelye').value,
-                status: document.getElementById('ujTermekAllapota').value
+            this.termekSorHozzaadasa({
+                cikkszam: document.getElementById('ujTermekCikkszam').value,
+                nev: document.getElementById('ujTermekNev').value,
+                kategoria: document.getElementById('ujTermekKategoria').value,
+                mennyiseg: document.getElementById('ujTermekMennyiseg').value,
+                hely: document.getElementById('ujTermekHelye').value,
+                allapot: document.getElementById('ujTermekAllapota').value
             });
-            this.close('ujTermekModal');
+            this.modalBezarasa('ujTermekModal');
         });
 
         document.getElementById('termekSzerkesztesUrlap').addEventListener('submit', (event) => {
             event.preventDefault();
-            if (!this.activeRow) return;
+            if (!this.aktivSor) return;
 
-            const values = {
-                sku: document.getElementById('szerkesztesCikkszam').value,
-                name: document.getElementById('szerkesztesTermekNev').value,
-                category: document.getElementById('szerkesztesKategoria').value,
-                quantity: document.getElementById('szerkesztesMennyiseg').value,
-                location: document.getElementById('szerkesztesHelye').value,
-                status: document.getElementById('szerkesztesAllapota').value
+            const termekAdatok = {
+                cikkszam: document.getElementById('szerkesztesCikkszam').value,
+                nev: document.getElementById('szerkesztesTermekNev').value,
+                kategoria: document.getElementById('szerkesztesKategoria').value,
+                mennyiseg: document.getElementById('szerkesztesMennyiseg').value,
+                hely: document.getElementById('szerkesztesHelye').value,
+                allapot: document.getElementById('szerkesztesAllapota').value
             };
 
-            const cells = this.activeRow.cells;
-            cells[0].textContent = values.sku;
-            cells[1].textContent = values.name;
-            cells[2].textContent = values.category;
-            cells[3].textContent = values.quantity;
-            cells[4].textContent = values.location;
-            this.setStatus(cells[5], values.status);
+            const cellak = this.aktivSor.cells;
+            cellak[0].textContent = termekAdatok.cikkszam;
+            cellak[1].textContent = termekAdatok.nev;
+            cellak[2].textContent = termekAdatok.kategoria;
+            cellak[3].textContent = termekAdatok.mennyiseg;
+            cellak[4].textContent = termekAdatok.hely;
+            this.allapotBeallitasa(cellak[5], termekAdatok.allapot);
 
-            this.close('termekSzerkesztesModal');
+            this.modalBezarasa('termekSzerkesztesModal');
         });
 
         document.getElementById('torlesMegerositeseGomb').addEventListener('click', () => {
-            if (this.activeRow) {
-                this.activeRow.remove();
-                this.activeRow = null;
+            if (this.aktivSor) {
+                this.aktivSor.remove();
+                this.aktivSor = null;
             }
-            this.close('termekTorlesModal');
+            this.modalBezarasa('termekTorlesModal');
         });
     }
 
-    populateEditForm() {
-        const cells = this.activeRow.cells;
-        document.getElementById('szerkesztesCikkszam').value = cells[0].textContent;
-        document.getElementById('szerkesztesTermekNev').value = cells[1].textContent;
-        document.getElementById('szerkesztesKategoria').value = cells[2].textContent;
-        document.getElementById('szerkesztesMennyiseg').value = cells[3].textContent;
-        document.getElementById('szerkesztesHelye').value = cells[4].textContent;
-        document.getElementById('szerkesztesAllapota').value = cells[5].textContent.trim();
+    szerkesztoUrlapFeltoltese() {
+        const cellak = this.aktivSor.cells;
+        document.getElementById('szerkesztesCikkszam').value = cellak[0].textContent;
+        document.getElementById('szerkesztesTermekNev').value = cellak[1].textContent;
+        document.getElementById('szerkesztesKategoria').value = cellak[2].textContent;
+        document.getElementById('szerkesztesMennyiseg').value = cellak[3].textContent;
+        document.getElementById('szerkesztesHelye').value = cellak[4].textContent;
+        document.getElementById('szerkesztesAllapota').value = cellak[5].textContent.trim();
     }
 
-    addRow(product) {
-        const row = document.createElement('tr');
-        const values = [
-            product.sku,
-            product.name,
-            product.category,
-            product.quantity,
-            product.location
+    termekSorHozzaadasa(termek) {
+        const sor = document.createElement('tr');
+        const ertekek = [
+            termek.cikkszam,
+            termek.nev,
+            termek.kategoria,
+            termek.mennyiseg,
+            termek.hely
         ];
 
-        values.forEach((value) => {
-            const cell = document.createElement('td');
-            cell.textContent = value;
-            row.appendChild(cell);
+        ertekek.forEach((ertek) => {
+            const cella = document.createElement('td');
+            cella.textContent = ertek;
+            sor.appendChild(cella);
         });
 
-        const statusCell = document.createElement('td');
-        this.setStatus(statusCell, product.status);
-        row.appendChild(statusCell);
+        const allapotCella = document.createElement('td');
+        this.allapotBeallitasa(allapotCella, termek.allapot);
+        sor.appendChild(allapotCella);
 
-        const actionsCell = document.createElement('td');
-        actionsCell.className = 'text-end';
-        actionsCell.append(
-            this.createActionButton('Szerkesztés', 'btn-outline-primary me-1', 'bi-pencil', '#termekSzerkesztesModal'),
-            this.createActionButton('Törlés', 'btn-outline-danger', 'bi-trash', '#termekTorlesModal')
+        const muveletekCella = document.createElement('td');
+        muveletekCella.className = 'text-end';
+        muveletekCella.append(
+            this.muveletGombLetrehozasa('Szerkesztés', 'btn-outline-primary me-1', 'bi-pencil', '#termekSzerkesztesModal'),
+            this.muveletGombLetrehozasa('Törlés', 'btn-outline-danger', 'bi-trash', '#termekTorlesModal')
         );
-        row.appendChild(actionsCell);
-        this.table.appendChild(row);
+        sor.appendChild(muveletekCella);
+        this.keszletTabla.appendChild(sor);
     }
 
-    createActionButton(label, variant, iconName, target) {
-        const button = document.createElement('button');
-        button.type = 'button';
-        button.className = `btn btn-sm ${variant}`;
-        button.dataset.bsToggle = 'modal';
-        button.dataset.bsTarget = target;
-        button.title = label;
-        button.setAttribute('aria-label', label);
+    muveletGombLetrehozasa(felirat, stilusOsztaly, ikonNev, celModal) {
+        const gomb = document.createElement('button');
+        gomb.type = 'button';
+        gomb.className = `btn btn-sm ${stilusOsztaly}`;
+        gomb.dataset.bsToggle = 'modal';
+        gomb.dataset.bsTarget = celModal;
+        gomb.title = felirat;
+        gomb.setAttribute('aria-label', felirat);
 
-        const icon = document.createElement('i');
-        icon.className = `bi ${iconName}`;
-        button.appendChild(icon);
+        const ikon = document.createElement('i');
+        ikon.className = `bi ${ikonNev}`;
+        gomb.appendChild(ikon);
 
-        return button;
+        return gomb;
     }
 
-    setStatus(cell, status) {
-        const badge = document.createElement('span');
-        badge.className = `badge ${this.getBadge(status)}`;
-        badge.textContent = status;
-        cell.replaceChildren(badge);
+    allapotBeallitasa(cella, allapot) {
+        const jelveny = document.createElement('span');
+        jelveny.className = `badge ${this.allapotJelvenyOsztalyanakLekerdezese(allapot)}`;
+        jelveny.textContent = allapot;
+        cella.replaceChildren(jelveny);
     }
 
-    getBadge(status) {
-        if (status === 'Kevés készlet') return 'bg-warning text-dark';
-        if (status === 'Kifogyott') return 'bg-danger';
+    allapotJelvenyOsztalyanakLekerdezese(allapot) {
+        if (allapot === 'Kevés készlet') return 'bg-warning text-dark';
+        if (allapot === 'Kifogyott') return 'bg-danger';
         return 'bg-success';
     }
 
-    close(id) {
-        bootstrap.Modal.getInstance(document.getElementById(id))?.hide();
+    modalBezarasa(azonosito) {
+        bootstrap.Modal.getInstance(document.getElementById(azonosito))?.hide();
     }
 }
 

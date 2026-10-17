@@ -1,84 +1,82 @@
-function formatInventoryTimestamp(date) {
-    return date.toISOString().slice(0, 16).replace('T', ' ');
+function leltarIdopontFormazasa(datum) {
+    return datum.toISOString().slice(0, 16).replace('T', ' ');
 }
 
-function createInventoryHistoryRow(dateOnly) {
-    const row = document.createElement('tr');
-    const dateCell = document.createElement('td');
-    dateCell.textContent = dateOnly;
+function leltarElozmenySorLetrehozasa(datum) {
+    const sor = document.createElement('tr');
+    const datumCella = document.createElement('td');
+    datumCella.textContent = datum;
 
-    const typeCell = document.createElement('td');
-    typeCell.textContent = 'Teljes raktár';
+    const tipusCella = document.createElement('td');
+    tipusCella.textContent = 'Teljes raktár';
 
-    const resultCell = document.createElement('td');
-    const result = document.createElement('span');
-    result.className = 'text-success';
-    result.textContent = '100% egyezés';
-    resultCell.appendChild(result);
+    const eredmenyCella = document.createElement('td');
+    const eredmeny = document.createElement('span');
+    eredmeny.className = 'text-success';
+    eredmeny.textContent = '100% egyezés';
+    eredmenyCella.appendChild(eredmeny);
 
-    const detailsCell = document.createElement('td');
-    const detailsButton = document.createElement('button');
-    detailsButton.type = 'button';
-    detailsButton.className = 'btn btn-sm btn-outline-light';
-    detailsButton.textContent = 'Megtekintés';
-    detailsButton.dataset.leltarReszletek = '';
-    detailsButton.dataset.datum = dateOnly;
-    detailsButton.dataset.tipus = 'Teljes raktár';
-    detailsButton.dataset.eredmeny = '100% egyezés';
-    detailsCell.appendChild(detailsButton);
+    const reszletekCella = document.createElement('td');
+    const reszletekGomb = document.createElement('button');
+    reszletekGomb.type = 'button';
+    reszletekGomb.className = 'btn btn-sm btn-outline-light';
+    reszletekGomb.textContent = 'Megtekintés';
+    reszletekGomb.dataset.leltarReszletek = '';
+    reszletekGomb.dataset.datum = datum;
+    reszletekGomb.dataset.tipus = 'Teljes raktár';
+    reszletekGomb.dataset.eredmeny = '100% egyezés';
+    reszletekCella.appendChild(reszletekGomb);
 
-    row.append(dateCell, typeCell, resultCell, detailsCell);
-    return row;
+    sor.append(datumCella, tipusCella, eredmenyCella, reszletekCella);
+    return sor;
 }
 
-function triggerInventory() {   // AI segítség
-    const resultCard = document.getElementById('leltarEredmenyKartya');
-    const totalCountEl = document.getElementById('leltarTetelSzam');
-    const dateTextEl = document.getElementById('leltarDatumSzoveg');
-    const historyBody = document.getElementById('leltarElozmenyekTorzs');
+function leltarInditasa() {
+    const eredmenyKartya = document.getElementById('leltarEredmenyKartya');
+    const tetelszamElem = document.getElementById('leltarTetelSzam');
+    const datumSzovegElem = document.getElementById('leltarDatumSzoveg');
+    const elozoLeltarakTorzs = document.getElementById('leltarElozmenyekTorzs');
 
-    const now = formatInventoryTimestamp(new Date());
-    const totalItems = document.querySelectorAll('#keszletTablaTorzs tr').length;
+    const aktualisIdopont = leltarIdopontFormazasa(new Date());
+    const termekekSzama = document.querySelectorAll('#keszletTablaTorzs tr').length;
 
-    totalCountEl.innerText = `${totalItems} féle termék`;
-    dateTextEl.innerText = `Lezárva: ${now}`;
-    resultCard.classList.remove('d-none');
+    tetelszamElem.innerText = `${termekekSzama} féle termék`;
+    datumSzovegElem.innerText = `Lezárva: ${aktualisIdopont}`;
+    eredmenyKartya.classList.remove('d-none');
 
-    const dateOnly = now.split(' ')[0];
-    historyBody.prepend(createInventoryHistoryRow(dateOnly));
+    const datum = aktualisIdopont.split(' ')[0];
+    elozoLeltarakTorzs.prepend(leltarElozmenySorLetrehozasa(datum));
 
-    if (typeof showToast === 'function') {
-        showToast('A leltározás sikeresen lezajlott. Eredmények megtekinthetők alul.', 'success');
-    }
+    bootstrap.Toast.getOrCreateInstance(document.getElementById('leltarToast')).show();
 }
 
-function showInventoryDetails(date, type, result) {
-    document.getElementById('reszletekLeltarDatum').innerText = date;
-    document.getElementById('reszletekLeltarTipus').innerText = type;
-    document.getElementById('reszletekLeltarEredmeny').innerText = result;
+function leltarReszleteinekMegjelenitese(datum, tipus, eredmeny) {
+    document.getElementById('reszletekLeltarDatum').innerText = datum;
+    document.getElementById('reszletekLeltarTipus').innerText = tipus;
+    document.getElementById('reszletekLeltarEredmeny').innerText = eredmeny;
 
-    const modalEl = document.getElementById('leltarReszletekModal');
-    if (modalEl) {
-        const modal = new bootstrap.Modal(modalEl);
+    const modalElem = document.getElementById('leltarReszletekModal');
+    if (modalElem) {
+        const modal = new bootstrap.Modal(modalElem);
         modal.show();
     }
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-    document.getElementById('leltarInditasaGomb').addEventListener('click', triggerInventory);
+document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('leltarInditasaGomb').addEventListener('click', leltarInditasa);
 
     document.getElementById('leltarElozmenyekTorzs').addEventListener('click', (event) => {
-        const button = event.target.closest('[data-leltar-reszletek]');
-        if (!button) return;
+        const gomb = event.target.closest('[data-leltar-reszletek]');
+        if (!gomb) return;
 
-        showInventoryDetails(button.dataset.datum, button.dataset.tipus, button.dataset.eredmeny);
+        leltarReszleteinekMegjelenitese(gomb.dataset.datum, gomb.dataset.tipus, gomb.dataset.eredmeny);
     });
 
     Chart.defaults.color = '#adb5bd';
     Chart.defaults.borderColor = '#2f3542';
 
-    const ctxCategory = document.getElementById('kategoriaDiagram').getContext('2d');
-    new Chart(ctxCategory, {
+    const kategoriaRajzContextus = document.getElementById('kategoriaDiagram').getContext('2d');
+    new Chart(kategoriaRajzContextus, {
         type: 'doughnut',
         data: {
             labels: ['Irodabútor', 'Elektronika', 'Periféria', 'Irodaszer', 'Világítás'],
@@ -97,8 +95,8 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    const ctxMovement = document.getElementById('mozgasDiagram').getContext('2d');
-    new Chart(ctxMovement, {
+    const mozgasRajzContextus = document.getElementById('mozgasDiagram').getContext('2d');
+    new Chart(mozgasRajzContextus, {
         type: 'bar',
         data: {
             labels: ['Jan', 'Feb', 'Már', 'Ápr', 'Máj', 'Jún'],
@@ -121,8 +119,8 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    const ctxValue = document.getElementById('keszletErtekDiagram').getContext('2d');
-    new Chart(ctxValue, {
+    const keszletErtekRajzContextus = document.getElementById('keszletErtekDiagram').getContext('2d');
+    new Chart(keszletErtekRajzContextus, {
         type: 'line',
         data: {
             labels: ['Q1', 'Q2', 'Q3', 'Q4'],
@@ -144,8 +142,8 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    const ctxTermekek = document.getElementById('termekMennyisegDiagram').getContext('2d');
-    new Chart(ctxTermekek, {
+    const termekMennyisegRajzContextus = document.getElementById('termekMennyisegDiagram').getContext('2d');
+    new Chart(termekMennyisegRajzContextus, {
         type: 'bar',
         data: {
             labels: ['Irodabútor', 'Elektronika', 'Periféria', 'Irodaszer', 'Világítás'],
@@ -179,8 +177,8 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    const ctxKategoria = document.getElementById('kategoriaForgalomDiagram').getContext('2d');
-    new Chart(ctxKategoria, {
+    const kategoriaForgalomRajzContextus = document.getElementById('kategoriaForgalomDiagram').getContext('2d');
+    new Chart(kategoriaForgalomRajzContextus, {
         type: 'doughnut',
         data: {
             labels: ['Irodabútor', 'Elektronika', 'Irodaszer', 'Egyéb'],
