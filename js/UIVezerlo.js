@@ -1,3 +1,4 @@
+// AI segítség
 class UIVezerlo {
     constructor() {
         this._aktivFul = 'attekintes';
@@ -6,6 +7,11 @@ class UIVezerlo {
             hivatkozas.addEventListener('click', (event) => {
                 event.preventDefault();
                 this.fulValtasa(hivatkozas.dataset.tab);
+
+                const mobilMenu = document.getElementById('sidebarMenu');
+                if (mobilMenu.classList.contains('show')) {
+                    bootstrap.Offcanvas.getOrCreateInstance(mobilMenu).hide();
+                }
             });
         });
     }

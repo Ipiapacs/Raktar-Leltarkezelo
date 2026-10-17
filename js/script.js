@@ -1,3 +1,4 @@
+// AI segítség
 function leltarIdopontFormazasa(datum) {
     return datum.toISOString().slice(0, 16).replace('T', ' ');
 }
