@@ -98,7 +98,8 @@
                             <div class="col-lg-8">
                                 <div class="card card-custom p-3 h-100">
                                     <h5 class="card-title mb-3">Termékek</h5>
-                                    <div class="bg-dark rounded p-3 text-center d-flex align-items-center justify-content-center chart-frame">
+                                    <div
+                                        class="bg-dark rounded p-3 text-center d-flex align-items-center justify-content-center chart-frame">
                                         <canvas id="termekMennyisegDiagram"></canvas>
                                     </div>
                                 </div>
@@ -106,7 +107,8 @@
                             <div class="col-lg-4">
                                 <div class="card card-custom p-3 h-100">
                                     <h5 class="card-title mb-3">Kategória / Forgalom</h5>
-                                    <div class="bg-dark rounded p-3 text-center d-flex align-items-center justify-content-center chart-frame">
+                                    <div
+                                        class="bg-dark rounded p-3 text-center d-flex align-items-center justify-content-center chart-frame">
                                         <canvas id="kategoriaForgalomDiagram"></canvas>
                                     </div>
                                 </div>
@@ -448,9 +450,9 @@
                                             <td>Teljes raktár</td>
                                             <td><span class="text-success">98.4% egyezés</span></td>
                                             <td>
-                                                <button class="btn btn-sm btn-outline-light"
-                                                    data-leltar-reszletek data-datum="2026-09-30"
-                                                    data-tipus="Teljes raktár" data-eredmeny="98.4% egyezés">
+                                                <button class="btn btn-sm btn-outline-light" data-leltar-reszletek
+                                                    data-datum="2026-09-30" data-tipus="Teljes raktár"
+                                                    data-eredmeny="98.4% egyezés">
                                                     Megtekintés
                                                 </button>
                                             </td>
@@ -508,8 +510,7 @@
         </div>
     </div>
 
-    <div class="modal fade" id="ujTermekModal" tabindex="-1" aria-labelledby="ujTermekModalCimke"
-        aria-hidden="true">
+    <div class="modal fade" id="ujTermekModal" tabindex="-1" aria-labelledby="ujTermekModalCimke" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
@@ -520,7 +521,8 @@
                     <div class="modal-body">
                         <div class="mb-3">
                             <label for="ujTermekCikkszam" class="form-label">SKU</label>
-                            <input type="text" class="form-control" id="ujTermekCikkszam" placeholder="pl. SKU-8001" required>
+                            <input type="text" class="form-control" id="ujTermekCikkszam" placeholder="pl. SKU-8001"
+                                required>
                         </div>
                         <div class="mb-3">
                             <label for="ujTermekNev" class="form-label">Termék neve</label>
@@ -638,7 +640,8 @@
                 <div class="modal-body">
                     <p><strong>Dátum:</strong> <span id="reszletekLeltarDatum">-</span></p>
                     <p><strong>Típus:</strong> <span id="reszletekLeltarTipus">-</span></p>
-                    <p><strong>Eredmény / Pontosság:</strong> <span id="reszletekLeltarEredmeny" class="text-success">-</span>
+                    <p><strong>Eredmény / Pontosság:</strong> <span id="reszletekLeltarEredmeny"
+                            class="text-success">-</span>
                     </p>
                     <hr class="border-secondary">
                     <p class="text-muted mb-0">A leltár során az összes termék számlálása megtörtént.</p>
