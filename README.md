@@ -2,4 +2,4 @@
 
 ## Tesztek
 
-A `js/script.js` fájl betöltéskor `console.assert` ellenőrzéseket futtat: ellenőrzi a leltár műveleteit, a diagramokat, valamint a termék- és felületvezérlők metódusait. Hiba esetén a böngésző konzolja egyszerű `HIBA:` üzenetet jelenít meg.
+A `js/script.js` alján lévő `console.assert` tesztek az oldal betöltésekor automatikusan lefutnak. Az eredményt a böngésző fejlesztői konzolján lehet ellenőrizni.

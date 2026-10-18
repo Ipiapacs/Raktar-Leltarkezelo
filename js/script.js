@@ -205,3 +205,52 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+    console.assert(
+        leltarIdopontFormazasa(new Date('2025-03-04T05:06:00.000Z')) === '2025-03-04 05:06',
+        'Hiba: az időpont formázása nem megfelelő.'
+    );
+
+    const sor = leltarElozmenySorLetrehozasa('2025-03-04');
+    console.assert(sor.cells.length === 4, 'Hiba: az előzménysor nem négy cellából áll.');
+    console.assert(sor.cells[0].textContent === '2025-03-04', 'Hiba: az előzmény dátuma hibás.');
+    console.assert(sor.cells[1].textContent === 'Teljes raktár', 'Hiba: a leltár típusa hibás.');
+    console.assert(sor.cells[2].textContent === '100% egyezés', 'Hiba: a leltár eredménye hibás.');
+    console.assert(
+        sor.querySelector('[data-leltar-reszletek]').dataset.datum === '2025-03-04',
+        'Hiba: a részletek gomb dátuma hibás.'
+    );
+
+    document.getElementById('leltarInditasaGomb').click();
+    console.assert(
+        document.getElementById('leltarTetelSzam').innerText.endsWith('féle termék'),
+        'Hiba: a leltár termékszáma nem jelenik meg.'
+    );
+    console.assert(
+        document.getElementById('leltarDatumSzoveg').innerText.startsWith('Lezárva: '),
+        'Hiba: a leltár dátuma nem jelenik meg.'
+    );
+    console.assert(
+        !document.getElementById('leltarEredmenyKartya').classList.contains('d-none'),
+        'Hiba: a leltár eredménykártyája rejtve maradt.'
+    );
+    console.assert(
+        document.getElementById('leltarElozmenyekTorzs').rows.length > 0,
+        'Hiba: a leltár nem került az előzmények közé.'
+    );
+
+    document.querySelector('#leltarElozmenyekTorzs [data-leltar-reszletek]').click();
+    console.assert(
+        document.getElementById('reszletekLeltarDatum').innerText !== '',
+        'Hiba: a leltár részleteinek dátuma nem jelenik meg.'
+    );
+    console.assert(
+        document.getElementById('reszletekLeltarTipus').innerText === 'Teljes raktár',
+        'Hiba: a leltár részleteinek típusa hibás.'
+    );
+    console.assert(
+        document.getElementById('reszletekLeltarEredmeny').innerText === '100% egyezés',
+        'Hiba: a leltár részleteinek eredménye hibás.'
+    );
+});
